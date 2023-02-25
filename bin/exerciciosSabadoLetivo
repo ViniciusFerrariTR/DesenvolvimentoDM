@@ -1,0 +1,78 @@
+import 'dart:io';
+import 'package:projetoaulas/projetoaulas.dart' as projetoaulas;
+/*     Função main executa o codigo      */
+
+void main(List<String> arguments) {
+calcularsalario1();
+
+
+}
+
+/*   
+Exercício I
+Para cada variante de função que estudamos elaborar a seguinte função:
+	→ função calularSalario - precisa do (i) valor salario e o (ii) valor do desconto. Permitir o desconto somente se haver saldo. No final informar o saldo.
+
+
+*/
+//Funções sem retorno e sem parametros//
+
+
+void calcularsalario1(){
+double salario, desconto, salarioFinal;
+
+
+print("informe o salario:");
+salario = double.parse(stdin.readLineSync()!);
+
+
+if(salario > 0){
+
+  print("Informe o desconto:");
+  desconto = double.parse(stdin.readLineSync()!);
+
+  salarioFinal = salario - desconto;
+
+  if(desconto > salario){
+    print("O valor do desconto é maior do que o salario");
+  }
+  else{
+    print('''o salario liquido é $salarioFinal''');
+  }
+}
+else{
+  print("Você não possui saldo");
+}
+
+
+
+
+
+
+
+/*
+Funções sem retorno e com parametros
+
+void calcularsalario2(double salario, double desconto) {
+  double salarioFinal = salario - (salario * desconto);
+  print('''
+  O salario final é $salarioFinal
+  ''');
+
+*/
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
