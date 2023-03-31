@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 
 /*   
- Classe abstrata não pode ser instanciada, pois é uma classe de referencia*/
+ Classe abstrata não pode ser instanciada, pois é uma classe de referencia */
 class App extends StatelessWidget{
 
 
