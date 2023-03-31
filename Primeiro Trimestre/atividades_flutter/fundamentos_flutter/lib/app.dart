@@ -11,7 +11,7 @@ class App extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    /* Retornando um Widget (Objeto do tipo Material App)*/
+    /* Retornando um Widget (Objeto do tipo Material  App)*/
 
 
     return MaterialApp(
