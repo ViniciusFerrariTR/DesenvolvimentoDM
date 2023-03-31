@@ -4,7 +4,7 @@ import 'dart:io';
 
 
 
-//Função main executa o codigo//
+//Função main executa o codigo.//
 
 
 void main(List<String> arguments) {
