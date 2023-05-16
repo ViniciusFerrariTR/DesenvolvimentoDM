@@ -31,41 +31,37 @@ class ContatoLista extends StatelessWidget {
           return ListView.builder(
             itemCount: listaContatos.length,
             itemBuilder: (context, indice) {
-              var contato = listaContatos[indice];
-              return ListTile(
-                leading: CircleAvatar(backgroundImage: NetworkImage(contato.URLAvatar!),),
-                title: Text(contato.nome!),
-                subtitle: Text(contato.email!),
-                trailing: Wrap(
-                  children: [
-                          IconButton(
-                            icon: Icon(Icons.delete),
-                            onPressed: () {
-                                dao.excluir(contato.id);
-                    }),
-                          IconButton(
-                            icon: Icon(Icons.edit),
-                            onPressed: () {
-                              Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ContatoForm()),
-                          );
-                })]));
-                
-                
+              var contato = listaContatos[indice];           
+              return criarItemLista(contato, context);
             },
           );
-        }
-      );
-  }
-Widget criarItemLista(Contato contato) {
-    return Text(contato.nome!);
-    
+        });
   }
 
-
-
+  Widget criarItemLista(Contato contato, BuildContext context) {
+    ContatoDAOInterface dao = ContatoDAO();
+    return ListTile(
+        leading: CircleAvatar(
+          backgroundImage: NetworkImage(contato.URLAvatar!),
+        ),
+        title: Text(contato.nome!),
+        subtitle: Text(contato.email!),
+        trailing: Wrap(children: [
+          IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                dao.excluir(contato.id);
+              }),
+          IconButton(
+              icon: Icon(Icons.edit),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ContatoForm()),
+                );
+              })
+        ]));
+  }
 
   BottomAppBar criarBarraNavegacao() {
     return BottomAppBar(
