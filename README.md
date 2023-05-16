@@ -12,7 +12,23 @@
 * 📆 Aula 6 - 16/03 [Aula prática](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Primeiro%20Trimestre/atividades_dart) 
 * 📆 Aula 7 - 23/03 [Aplicação dos conceitos de POO na criação de APPs](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Primeiro%20Trimestre/atividades_flutter/projeto_um) 
 * 📆 Aula 8 - 30/03 [Fundamentos para o posicionamento de elementos gráficos, rotas, classes de base e prototipação](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Primeiro%20Trimestre/atividades_flutter/projeto_dois) 
-* 📆 Aula 9 - 13/04 [?]() 
+* 📆 Aula 9 - 13/04 [Conceitos básicos de Layout do Flutter, tamanho e alinhamento do eixo.]() 
+
+### 2º Trimestre
+* 📆 Aula 1 - 11/05 [Introdução a manipulação de dados em Flutter](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projetotrimestre/lib/view)
+* 📆 Aula 2 - 11/05 [Função assíncrona; await, async, Future, delayed, Duration (onde e quando utilizar)](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projetotrimestre)
+* 📆 Aula 3 - ?
+* 📆 Aula 4 - ?
+* 📆 Aula 5 - ?
+* 📆 Aula 6 - ?
+* 📆 Aula 7 - ?
+* 📆 Aula 8 - ?
+* 📆 Aula 9 - ?
+* 📆 Aula 10 - ?
+* 📆 Aula 11 - ?
+* 📆 Aula 12 - ?
+* 📆 Aula 13 - ?
+
 
 ## Sábados Letivos
 * 📆 25/02  (Feito)
