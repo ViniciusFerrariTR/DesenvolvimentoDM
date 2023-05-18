@@ -12,7 +12,7 @@ class CampoNome extends StatelessWidget {
     return TextFormField(
       controller: controle,
       keyboardType: TextInputType.name,
-      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(mascara))],
+      //inputFormatters: [FilteringTextInputFormatter.allow(RegExp(mascara))],
       validator: (valorDigitado){
         String? msnErro = ehVazio(valorDigitado) ?? temMinimoCaracteres(valorDigitado);
         return msnErro;

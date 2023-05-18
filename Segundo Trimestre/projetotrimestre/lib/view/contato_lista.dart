@@ -8,8 +8,14 @@ import 'package:projetotrimestre/view/widget/botao_adicionar.dart';
 import 'package:projetotrimestre/view/widget/foto_contato.dart';
 import 'package:projetotrimestre/view/widget/painel_botoes.dart';
 
-class ContatoLista extends StatelessWidget {
-  ContatoLista({Key? key}) : super(key: key);
+class ContatoLista extends StatefulWidget {
+  const ContatoLista({Key? key}) : super(key: key);
+
+  @override
+  State<ContatoLista> createState() => _ContatoListaState();
+}
+
+class _ContatoListaState extends State<ContatoLista> {
   ContatoInterfaceDAO dao = ContatoDAOFake();
 
   @override
@@ -21,6 +27,11 @@ class ContatoLista extends StatelessWidget {
       bottomNavigationBar: const BarraNavegacao(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
     );
+  }
+
+  Future<List<Contato>> buscarContatos(){
+    setState((){});
+    return dao.consultarTodos();
   }
 
   Widget criarLista(BuildContext context) {
@@ -45,13 +56,14 @@ class ContatoLista extends StatelessWidget {
     return ItemLista(
       contato: contato, 
       alterar: () {
-        Navigator.pushNamed(context, Rota.contatoForm); 
+        Navigator.pushNamed(context, Rota.contatoForm, arguments: contato) .then((value) => buscarContatos());
       },
       detalhes: (){
         Navigator.pushNamed(context, Rota.contatoDetalhe);
       }, 
       excluir: (){
         dao.excluir(contato.id);
+        buscarContatos();
       } 
     );
   }
