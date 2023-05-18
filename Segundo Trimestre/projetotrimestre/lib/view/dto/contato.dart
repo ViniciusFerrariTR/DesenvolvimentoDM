@@ -1,32 +1,26 @@
 class Contato{
-  dynamic id;
-  String? nome;
-  String? telefone;
-  String? email;
-  String? URLAvatar;
-/* Função do DTO: É criado para que toda interface depender dela mesmo e não da mudança da tecnologia */
+  final dynamic id;
+  final String nome;
+  final String telefone; 
+  final String email; 
+  final String urlAvatar;
 
-  Contato();
-
-  Contato.dados({
-    this.id,
-    this.nome,
-    this.telefone,
-    this.email,
-    this.URLAvatar
+  Contato({
+    this.id, 
+    required this.nome, 
+    required this.telefone, 
+    required this.email, 
+    required this.urlAvatar
   });
 
-
-/* Comando para imprimir os dados ao invés de apenas o objeto */
   @override
-  String toString(){
+  String toString() {
     return '''
-      $nome
-      $telefone
+      $id
+      $nome 
+      $telefone 
       $email
-      $URLAvatar
+      $urlAvatar
     ''';
   }
-
-  void remove(Contato contato) {}
 }
