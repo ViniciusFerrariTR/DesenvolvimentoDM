@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:persistencia/view/dto/contato.dart';
+import 'package:projetotrimestre/view/dto/contato.dart';
 
 class FotoContato extends StatelessWidget {
   final Contato contato;

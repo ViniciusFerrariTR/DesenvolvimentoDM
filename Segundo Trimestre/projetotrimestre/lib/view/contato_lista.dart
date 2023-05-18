@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:persistencia/database/daofake/contato_dao_fake.dart';
-import 'package:persistencia/rota.dart';
-import 'package:persistencia/view/dto/contato.dart';
-import 'package:persistencia/view/interface/contato_interface_dao.dart';
-import 'package:persistencia/view/widget/barra_navegacao.dart';
-import 'package:persistencia/view/widget/botao_adicionar.dart';
-import 'package:persistencia/view/widget/foto_contato.dart';
-import 'package:persistencia/view/widget/painel_botoes.dart';
+import 'package:projetotrimestre/database/daofake/contato_dao_fake.dart';
+import 'package:projetotrimestre/rota.dart';
+import 'package:projetotrimestre/view/dto/contato.dart';
+import 'package:projetotrimestre/view/interface/contato_interface_dao.dart';
+import 'package:projetotrimestre/view/widget/barra_navegacao.dart';
+import 'package:projetotrimestre/view/widget/botao_adicionar.dart';
+import 'package:projetotrimestre/view/widget/foto_contato.dart';
+import 'package:projetotrimestre/view/widget/painel_botoes.dart';
 
 class ContatoLista extends StatelessWidget {
   ContatoLista({Key? key}) : super(key: key);

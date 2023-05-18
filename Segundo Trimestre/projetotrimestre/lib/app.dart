@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:persistencia/rota.dart';
-import 'package:persistencia/view/contato_detalhe.dart';
-import 'package:persistencia/view/contato_form.dart';
-import 'package:persistencia/view/contato_lista.dart';
+import 'package:projetotrimestre/rota.dart';
+import 'package:projetotrimestre/view/contato_detalhe.dart';
+import 'package:projetotrimestre/view/contato_form.dart';
+import 'package:projetotrimestre/view/contato_lista.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 
-import 'package:persistencia/database/daofake/dados_fake.dart';
-import 'package:persistencia/view/dto/contato.dart';
-import 'package:persistencia/view/interface/contato_interface_dao.dart';
+import 'package:projetotrimestre/database/daofake/dados_fake.dart';
+import 'package:projetotrimestre/view/dto/contato.dart';
+import 'package:projetotrimestre/view/interface/contato_interface_dao.dart';
 
 class ContatoDAOFake implements ContatoInterfaceDAO{
 

@@ -1,4 +1,4 @@
-import 'package:persistencia/view/dto/contato.dart';
+import 'package:projetotrimestre/view/dto/contato.dart';
 
 abstract class ContatoInterfaceDAO{
   Contato salvar(Contato contato);

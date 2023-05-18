@@ -1,4 +1,6 @@
-import 'package:persistencia/view/dto/contato.dart';
+import 'package:projetotrimestre/view/dto/contato.dart';
+
+import '../../view/dto/contato.dart';
 
 List<Contato>  contatos = [
       Contato(id: 1, nome: 'José Pereira', email: 'jose@gmail.com', telefone: '(44) 99852-8569', urlAvatar: 'https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png')

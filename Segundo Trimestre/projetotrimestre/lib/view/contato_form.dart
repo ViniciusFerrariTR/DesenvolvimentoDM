@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:persistencia/database/daofake/contato_dao_fake.dart';
-import 'package:persistencia/view/dto/contato.dart';
-import 'package:persistencia/view/interface/contato_interface_dao.dart';
-import 'package:persistencia/view/widget/botao.dart';
-import 'package:persistencia/view/widget/campo_email.dart';
-import 'package:persistencia/view/widget/campo_nome.dart';
-import 'package:persistencia/view/widget/campo_telefone.dart';
-import 'package:persistencia/view/widget/campo_url.dart';
+import 'package:projetotrimestre/database/daofake/contato_dao_fake.dart';
+import 'package:projetotrimestre/view/dto/contato.dart';
+import 'package:projetotrimestre/view/interface/contato_interface_dao.dart';
+import 'package:projetotrimestre/view/widget/botao.dart';
+import 'package:projetotrimestre/view/widget/campo_email.dart';
+import 'package:projetotrimestre/view/widget/campo_nome.dart';
+import 'package:projetotrimestre/view/widget/campo_telefone.dart';
+import 'package:projetotrimestre/view/widget/campo_url.dart';
 
 class ContatoForm extends StatelessWidget{
   ContatoForm({Key? key}) : super(key: key);
