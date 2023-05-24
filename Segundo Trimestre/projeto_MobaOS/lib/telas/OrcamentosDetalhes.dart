@@ -23,55 +23,35 @@ class _OrcamentosDetalhesState extends State<OrcamentosDetalhes> {
 
   @override
   Widget build(BuildContext context) {
+    Orcamentos? orcamentos = receberContato(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Detalhes'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 80,
-              backgroundImage: NetworkImage(orcamentos.urlAvatar),
+      body: 
+        Container(
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.grey, // Cor de fundo do campo
+          ),
+          child: ClipOval(
+            child: Image.network(
+              orcamentos!.urlAvatar, fit: BoxFit.cover,
             ),
-            SizedBox(height: 16.0),
-            Text(
-              nome,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 16.0),
-            Text(
-              servico,
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
-      ),
+          ),
+        )
     );
   }
-}
 
- /* Orcamentos preencherDTO() {
-    return Orcamentos(
-        id: id,
-        nome: campoNome.controle.text,
-        servico: campoServico.controle.text,
-        endereco: campoEndereco.controle.text,
-        telefone: campoTelefone.controle.text,
-        urlAvatar: campoURL.controle.text);
-  }
-
-  void preencherCampos(Orcamentos orcamentos) {
-    campoNome.controle.text = orcamentos.nome;
-    campoServico.controle.text = orcamentos.servico;
-    campoEndereco.controle.text = orcamentos.endereco;
-    campoTelefone.controle.text = orcamentos.telefone;
-    campoURL.controle.text = orcamentos.urlAvatar;
+  Orcamentos? receberContato(BuildContext context) {
+    var parametro = ModalRoute.of(context);
+    if (parametro != null && parametro.settings.arguments != null) {
+      Orcamentos orcamentos = parametro.settings.arguments as Orcamentos;
+      return orcamentos;
+    } else {
+      return null;
+    }
   }
 }
-*/
