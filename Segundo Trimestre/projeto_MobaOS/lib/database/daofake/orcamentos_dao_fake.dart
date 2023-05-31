@@ -1,4 +1,5 @@
 
+/*import 'package:flutter/material.dart';
 import 'package:projeto_um/database/daofake/dados_fake.dart';
 import 'package:projeto_um/dto/Orcamentos.dart';
 
@@ -14,11 +15,22 @@ class OrcamentosDAOFake implements OrcamentosInterfaceDAO {
   Future<List<Orcamentos>> consultarTodos() {
     return Future.value(orcamento);
   }
+  @override
+  Future<List<Orcamentos>> consultarTodosAceitos() {
+    return Future.value(orcamentosAceitos);
+  }
 
   @override
-  bool excluir(dynamic id) {
+  Future<bool> excluir(dynamic id) async {
     print('excluir ${orcamento[id - 1]}');
     orcamento.remove(orcamento[id - 1]);
+    return true;
+  }
+
+  @override
+  bool concluirAceitos(dynamic id) {
+    print('excluir ${orcamentosAceitos[id - 1]}');
+    orcamentosAceitos.remove(orcamentosAceitos[id - 1]);
     return true;
   }
 
@@ -31,14 +43,18 @@ class OrcamentosDAOFake implements OrcamentosInterfaceDAO {
         servico: orcamentos.servico,
         endereco: orcamentos.endereco,
         telefone: orcamentos.telefone,
+         email: orcamentos.email,
         urlAvatar: orcamentos.urlAvatar,
+        statusOrcamento: StatusOrcamento.ACEITO
       );
-      orcamento.add(orcamentos);
+      orcamento.remove(orcamentos);
+
     } else {
-      int i = (orcamentos.id as int) - 1;
-      orcamento[i] = orcamentos;
+      orcamentos.statusOrcamento = StatusOrcamento.ACEITO;
+      orcamentosAceitos.add(orcamentos);
     }
     print(orcamentos);
     return orcamentos;
   }
 }
+*/

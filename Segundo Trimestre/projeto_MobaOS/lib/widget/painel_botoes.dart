@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class PainelBotoes extends StatelessWidget {
   final VoidCallback aceitar;
   final VoidCallback excluir;
-  const PainelBotoes({required this.aceitar, required this.excluir, Key? key})
+  const PainelBotoes({required this.aceitar, required this.excluir, Key? key,})
       : super(key: key);
 
   @override

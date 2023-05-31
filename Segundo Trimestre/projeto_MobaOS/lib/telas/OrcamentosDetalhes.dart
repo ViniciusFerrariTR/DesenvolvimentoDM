@@ -28,20 +28,31 @@ class _OrcamentosDetalhesState extends State<OrcamentosDetalhes> {
       appBar: AppBar(
         title: Text('Detalhes'),
       ),
-      body: 
-        Container(
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.grey, // Cor de fundo do campo
-          ),
-          child: ClipOval(
-            child: Image.network(
-              orcamentos!.urlAvatar, fit: BoxFit.cover,
-            ),
-          ),
-        )
+      body: Padding(
+        padding: const EdgeInsets.all(1.0),
+        child: Center(
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Container(
+              width: 200,
+              height: 200,
+              padding: EdgeInsets.all(1.0),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey,
+                // Cor de fundo do campo
+              ),
+              child: ClipOval(
+                child: Image.network(
+                  alignment: Alignment.center,
+                  orcamentos!.urlAvatar,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            )
+          ]),
+        ),
+      ),
     );
   }
 

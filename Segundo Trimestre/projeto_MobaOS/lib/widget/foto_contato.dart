@@ -3,7 +3,7 @@ import 'package:projeto_um/dto/Orcamentos.dart';
 
 class FotoContato extends StatelessWidget {
   final Orcamentos orcamentos;
-  const FotoContato({required this.orcamentos, Key? key}) : super(key: key);
+  const FotoContato({required this.orcamentos, Key? key, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

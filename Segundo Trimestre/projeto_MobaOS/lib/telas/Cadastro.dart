@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_um/telas/EsqueciSenha.dart';
+import 'package:projeto_um/telas/LoginPrimario.dart';
 
 class Cadastro extends StatelessWidget {
   const Cadastro({super.key});
@@ -23,6 +24,24 @@ class Cadastro extends StatelessWidget {
               ),
               const TextField(
                 decoration: InputDecoration(
+                  hintText: "Endereço",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: "Telefone",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: "Email",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const TextField(
+                decoration: InputDecoration(
                   hintText: 'Password',
                   border: OutlineInputBorder(),
                 ),
@@ -33,8 +52,11 @@ class Cadastro extends StatelessWidget {
                   child: const Text("Cadastrar"),
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Cadastro()));
+                        MaterialPageRoute(builder: (context) => const LoginPrimario()));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Cadastrado com sucesso!!!")));
                   }),
+                  
             ],
           ),
         ));

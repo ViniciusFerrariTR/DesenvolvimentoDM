@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // ignore_for_file: prefer_const_constructors
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+  const Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +12,16 @@ class Login extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            mainAxisAlignment: MainAxisAlignment.center,      
+            children: [           
+              Text(
+                'MOBA O.S',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 255, 8, 0),
+                  fontSize: 55,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               Container(
                 width: 300,
                 child: TextField(
@@ -36,38 +44,32 @@ class Login extends StatelessWidget {
               ),
               SizedBox(height: 50),
               Padding(
-                padding: EdgeInsets.all(30),
-                child:  Row(
-              
-                mainAxisAlignment: MainAxisAlignment.center,
-                
-                children: [
-
-                  ElevatedButton(
-                  
-                    child: Text("Criar conta"),
-                    onPressed: () {
-                      Navigator.pushNamed(context, "cadastro");
-                    },
-                  ),
-                  ElevatedButton(
-                    child: Text("Entrar"),
-                    onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, "orcamentosLista", (route) => false);
-                    },
-                  ),
-                  ElevatedButton(
-                    child: Text("Esqueci minha senha"),
-                    onPressed: () {
-                      Navigator.pushNamed(context, "esqueciSenha");
-                    },
-                  ),
-                ],
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      child: Text("Criar conta"),
+                      onPressed: () {
+                        Navigator.pushNamed(context, "cadastro");
+                      },
+                    ),
+                    ElevatedButton(
+                      child: Text("Entrar"),
+                      onPressed: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, "orcamentosLista", (route) => false);
+                      },
+                    ),
+                    ElevatedButton(
+                      child: Text("Esqueci minha senha"),
+                      onPressed: () {
+                        Navigator.pushNamed(context, "esqueciSenha");
+                      },
+                    ),
+                  ],
+                ),
               ),
-                )
-      
-             
             ],
           ),
         ),

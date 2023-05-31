@@ -4,7 +4,10 @@ class Orcamentos {
   final String servico;
   final String endereco;
   final String telefone;
+  final String email;
   final String urlAvatar;
+  StatusOrcamento statusOrcamento;
+  OrcamentoConcluido orcamentoConcluido;
 
   Orcamentos({
       this.id,
@@ -12,7 +15,10 @@ class Orcamentos {
       required this.servico,
       required this.endereco,
       required this.telefone,
-      required this.urlAvatar
+      required this.email,
+      required this.urlAvatar,
+      this.statusOrcamento = StatusOrcamento.NAO_VERIFICADO,
+      this.orcamentoConcluido = OrcamentoConcluido.EM_ANDAMENTO
 });
 
   @override
@@ -22,8 +28,21 @@ class Orcamentos {
       $nome 
       $servico
       $endereco
-      $telefone 
+      $telefone
+      $email
       $urlAvatar
+      $statusOrcamento
     ''';
   }
+}
+
+enum OrcamentoConcluido{
+  CONCLUIDO,
+  EM_ANDAMENTO
+
+}
+enum StatusOrcamento {
+  ACEITO,
+  RECUSADO,
+  NAO_VERIFICADO
 }
