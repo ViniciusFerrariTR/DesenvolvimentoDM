@@ -15,10 +15,10 @@
 * 📆 Aula 9 - 13/04 [Conceitos básicos de Layout do Flutter, tamanho e alinhamento do eixo.]() 
 
 ### 2º Trimestre
-* 📆 Aula 1 - 11/05 [Introdução a manipulação de dados em Flutter](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projetotrimestre/lib/view)
-* 📆 Aula 2 - 11/05 [Função assíncrona; await, async, Future, delayed, Duration (onde e quando utilizar)](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projetotrimestre)
-* 📆 Aula 3 - ?
-* 📆 Aula 4 - ?
+* 📆 Aula 1 - 09/05 [Contextualização: O que é necessário para salvar dados? Quais elementos gráficos são necessários? Quais as sequências de funcionalidades?](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/desenvolvimentoAulas/aula_0905)
+* 📆 Aula 2 - 11/05 [Introdução a manipulação de dados em Flutter](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/desenvolvimentoAulas/aula_1105)
+* 📆 Aula 3 - 18/05 [Função assíncrona; await, async, Future, delayed, Duration (onde e quando utilizar)](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/desenvolvimentoAulas/aula_1805)
+* 📆 Aula 4 - 25/05 [Implementação da classe de conexão e Implementação do DAO SQLite](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/desenvolvimentoAulas/aula_2505)
 * 📆 Aula 5 - ?
 * 📆 Aula 6 - ?
 * 📆 Aula 7 - ?
