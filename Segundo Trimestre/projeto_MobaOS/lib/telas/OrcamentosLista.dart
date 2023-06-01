@@ -5,8 +5,8 @@ import 'package:projeto_um/interface/orcamentos_interface_dao.dart';
 import 'package:projeto_um/rotas.dart';
 import 'package:projeto_um/widget/BarraNavegacao.dart';
 import 'package:projeto_um/widget/BotaoAdicionar.dart';
-import 'package:projeto_um/widget/foto_contato.dart';
-import 'package:projeto_um/widget/painel_botoes.dart';
+import 'package:projeto_um/widget/widget_nao_validados/foto_contato.dart';
+import 'package:projeto_um/widget/widget_nao_validados/painel_botoes.dart';
 
 class OrcamentosLista extends StatefulWidget {
   const OrcamentosLista({Key? key}) : super(key: key);

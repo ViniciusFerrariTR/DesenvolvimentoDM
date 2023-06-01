@@ -10,7 +10,18 @@ class Botao extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: salvar,
-      child: const Text('ok'),
+      style: ElevatedButton.styleFrom(
+        primary: Color.fromARGB(255, 255, 0, 0),
+        onPrimary: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: EdgeInsets.symmetric(
+          vertical: 16,
+          horizontal: 24,
+        ),
+      ),
+      child: const Text('Salvar Orçamento'),
     );
   }
 }

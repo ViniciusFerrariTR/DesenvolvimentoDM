@@ -12,17 +12,6 @@ const criarOrcamentos = '''
   )''';
 
 
-const criarOrcamentosAceitos =
-'''CREATE TABLE orcamentosAceitos(
-    id INTEGER NOT NULL PRIMARY KEY
-    ,nome VARCHAR(200) NOT NULL
-    ,servico VARCHAR (200) NOT NULL
-    ,endereco VARCHAR (200) NOT NULL
-    ,telefone CHAR(16) NOT NULL
-    ,email VARCHAR(150) NOT NULL
-    ,url_avatar VARCHAR(300) NOT NULL
-    ,statusOrcamento VARCHAR(1) NOT NULL
-  )''';
 
 const insercoesOrcamentos = [
 '''

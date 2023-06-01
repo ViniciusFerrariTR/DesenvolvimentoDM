@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:projeto_um/database/sqlite/dao/orcamentos_dao_sqlite.dart';
 import 'package:projeto_um/dto/Orcamentos.dart';
 import 'package:projeto_um/widget/Botao.dart';
-import 'package:projeto_um/widget/CampoEmail.dart';
-import 'package:projeto_um/widget/CampoEndereco.dart';
-import 'package:projeto_um/widget/CampoServico.dart';
+import 'package:projeto_um/widget/widget_nao_validados/CampoEmail.dart';
+import 'package:projeto_um/widget/widget_nao_validados/CampoEndereco.dart';
+import 'package:projeto_um/widget/widget_nao_validados/CampoServico.dart';
 import '../database/daofake/orcamentos_dao_fake.dart';
 import '../interface/orcamentos_interface_dao.dart';
-import '../widget/CampoNome.dart';
-import '../widget/CampoTelefone.dart';
-import '../widget/CampoURL.dart';
+import '../widget/widget_nao_validados/CampoNome.dart';
+import '../widget/widget_nao_validados/CampoTelefone.dart';
+import '../widget/widget_nao_validados/CampoURL.dart';
 
 class OrcamentosForm extends StatefulWidget {
   const OrcamentosForm({Key? key}) : super(key: key);
@@ -28,18 +28,27 @@ class _OrcamentosFormState extends State<OrcamentosForm> {
     receberContatoParaAlteracao(context);
     return Scaffold(
         appBar: AppBar(title: const Text('Orçamentos')),
-        body: Form(
+        body: 
+        Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Form(
             key: formKey,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 campoNome,
                 campoServico,
                 campoEndereco,
-                campoTelefone,    
+                campoTelefone,
+                campoEmail,
                 campoURL,
+                SizedBox(height:  20,),
                 criarBotao(context),
               ],
-            )));
+            )
+         ),
+    ),
+      );
   }
 
   final campoNome = CampoNome(controle: TextEditingController());
@@ -89,6 +98,7 @@ class _OrcamentosFormState extends State<OrcamentosForm> {
     campoServico.controle.text = orcamentos.servico;
     campoEndereco.controle.text = orcamentos.endereco;
     campoTelefone.controle.text = orcamentos.telefone;
+    campoEmail.controle.text = orcamentos.email;
     campoURL.controle.text = orcamentos.urlAvatar;
   }
 }

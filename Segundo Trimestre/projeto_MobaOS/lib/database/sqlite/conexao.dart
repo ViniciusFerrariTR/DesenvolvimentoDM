@@ -20,8 +20,7 @@ class Conexao{
         onCreate: (db, version) {
           db.execute(criarOrcamentos);
           insercoesOrcamentos.forEach((db.execute));
-          db.execute(criarOrcamentosAceitos);
-          insercoesOrcamentosAceitos.forEach((db.execute));
+
         },
         
         );
