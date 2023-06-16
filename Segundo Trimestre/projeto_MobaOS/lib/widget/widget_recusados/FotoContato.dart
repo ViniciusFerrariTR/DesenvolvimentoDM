@@ -6,7 +6,7 @@ class FotoContatoAceitos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String url = orcamentosAceitos.urlAvatar;
+    String url = orcamentosAceitos.url_avatar;
     return (Uri.tryParse(url)!.isAbsolute)
         ? CircleAvatar(backgroundImage: NetworkImage(url))
         : const CircleAvatar(child: Icon(Icons.person));

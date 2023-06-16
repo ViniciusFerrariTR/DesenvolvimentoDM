@@ -19,8 +19,8 @@
 * 📆 Aula 2 - 11/05 [Introdução a manipulação de dados em Flutter](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/desenvolvimentoAulas/aula_1105)
 * 📆 Aula 3 - 18/05 [Função assíncrona; await, async, Future, delayed, Duration (onde e quando utilizar)](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/desenvolvimentoAulas/aula_1805)
 * 📆 Aula 4 - 25/05 [Implementação da classe de conexão e Implementação do DAO SQLite](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/desenvolvimentoAulas/aula_2505)
-* 📆 Aula 5 - ?
-* 📆 Aula 6 - ?
+* 📆 Aula 5 - 01/06 [Desenvolvimento do projeto pessoal em sala de aula](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projeto_MobaOS)
+* 📆 Aula 6 - 15/06 [CRUD com Associação ](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projeto_MobaOS)
 * 📆 Aula 7 - ?
 * 📆 Aula 8 - ?
 * 📆 Aula 9 - ?
@@ -28,7 +28,6 @@
 * 📆 Aula 11 - ?
 * 📆 Aula 12 - ?
 * 📆 Aula 13 - ?
-
 
 ## Sábados Letivos
 * 📆 25/02  (Feito)

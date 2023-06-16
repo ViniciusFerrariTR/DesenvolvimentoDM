@@ -1,16 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_um/database/daofake/dados_fake.dart';
 import 'package:projeto_um/dto/Orcamentos.dart';
-import 'package:projeto_um/widget/Botao.dart';
-import 'package:projeto_um/widget/widget_nao_validados/CampoEndereco.dart';
-import 'package:projeto_um/widget/widget_nao_validados/CampoServico.dart';
-import 'package:projeto_um/widget/widget_nao_validados/CampoURL.dart';
-import '../database/daofake/orcamentos_dao_fake.dart';
-import '../interface/orcamentos_interface_dao.dart';
-import '../widget/widget_nao_validados/CampoNome.dart';
-import '../widget/widget_nao_validados/CampoTelefone.dart';
-import '../widget/widget_nao_validados/CampoURL.dart';
-
 class OrcamentosDetalhesAceitos extends StatefulWidget {
   const OrcamentosDetalhesAceitos({Key? key}) : super(key: key);
 
@@ -45,7 +34,7 @@ class _OrcamentosDetalhesState extends State<OrcamentosDetalhesAceitos> {
               child: ClipOval(
                 child: Image.network(
                   alignment: Alignment.center,
-                  orcamentos!.urlAvatar,
+                  orcamentos!.url_avatar,
                   fit: BoxFit.cover,
                 ),
               ),

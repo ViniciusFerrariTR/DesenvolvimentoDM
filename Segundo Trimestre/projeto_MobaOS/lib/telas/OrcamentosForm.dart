@@ -5,7 +5,6 @@ import 'package:projeto_um/widget/Botao.dart';
 import 'package:projeto_um/widget/widget_nao_validados/CampoEmail.dart';
 import 'package:projeto_um/widget/widget_nao_validados/CampoEndereco.dart';
 import 'package:projeto_um/widget/widget_nao_validados/CampoServico.dart';
-import '../database/daofake/orcamentos_dao_fake.dart';
 import '../interface/orcamentos_interface_dao.dart';
 import '../widget/widget_nao_validados/CampoNome.dart';
 import '../widget/widget_nao_validados/CampoTelefone.dart';
@@ -90,7 +89,7 @@ class _OrcamentosFormState extends State<OrcamentosForm> {
         endereco: campoEndereco.controle.text,
         telefone: campoTelefone.controle.text,
         email: campoEmail.controle.text,
-        urlAvatar: campoURL.controle.text);
+        url_avatar: campoURL.controle.text);
   }
 
   void preencherCampos(Orcamentos orcamentos) {
@@ -99,6 +98,5 @@ class _OrcamentosFormState extends State<OrcamentosForm> {
     campoEndereco.controle.text = orcamentos.endereco;
     campoTelefone.controle.text = orcamentos.telefone;
     campoEmail.controle.text = orcamentos.email;
-    campoURL.controle.text = orcamentos.urlAvatar;
   }
 }

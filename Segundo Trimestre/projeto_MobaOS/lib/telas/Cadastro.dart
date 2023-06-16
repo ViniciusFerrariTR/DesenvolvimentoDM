@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_um/telas/EsqueciSenha.dart';
 import 'package:projeto_um/telas/LoginPrimario.dart';
 
 class Cadastro extends StatelessWidget {

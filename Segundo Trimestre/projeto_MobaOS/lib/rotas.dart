@@ -1,7 +1,3 @@
-
-
-import 'package:projeto_um/telas/OrcamentosDetalhesAceitos.dart';
-
 class Rotas {
   static const login = "login";
   static const loginPrimario = "loginPrimario";

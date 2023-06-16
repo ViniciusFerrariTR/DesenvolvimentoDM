@@ -5,9 +5,9 @@ class Orcamentos {
   final String endereco;
   final String telefone;
   final String email;
-  final String urlAvatar;
-  StatusOrcamento statusOrcamento;
-  OrcamentoConcluido orcamentoConcluido;
+  final String url_avatar;
+  String? statusOrcamento;
+  String? orcamentoConcluido;
 
   Orcamentos({
       this.id,
@@ -16,9 +16,9 @@ class Orcamentos {
       required this.endereco,
       required this.telefone,
       required this.email,
-      required this.urlAvatar,
-      this.statusOrcamento = StatusOrcamento.NAO_VERIFICADO,
-      this.orcamentoConcluido = OrcamentoConcluido.EM_ANDAMENTO
+      required this.url_avatar,
+      this.statusOrcamento,
+      this.orcamentoConcluido
 });
 
   @override
@@ -30,19 +30,9 @@ class Orcamentos {
       $endereco
       $telefone
       $email
-      $urlAvatar
+      $url_avatar
       $statusOrcamento
+      $orcamentoConcluido
     ''';
   }
-}
-
-enum OrcamentoConcluido{
-  CONCLUIDO,
-  EM_ANDAMENTO
-
-}
-enum StatusOrcamento {
-  ACEITO,
-  RECUSADO,
-  NAO_VERIFICADO
 }

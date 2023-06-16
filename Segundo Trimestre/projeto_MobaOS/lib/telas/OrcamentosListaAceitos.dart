@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_um/database/daofake/dados_fake.dart';
-import 'package:projeto_um/database/daofake/orcamentos_dao_fake.dart';
 import 'package:projeto_um/database/sqlite/dao/orcamentos_dao_sqlite.dart';
 import 'package:projeto_um/dto/Orcamentos.dart';
 import 'package:projeto_um/interface/orcamentos_interface_dao.dart';
 import 'package:projeto_um/rotas.dart';
-import 'package:projeto_um/widget/BarraNavegacao.dart';
-import 'package:projeto_um/widget/BotaoAdicionar.dart';
 import 'package:projeto_um/widget/widget_nao_validados/foto_contato.dart';
-import 'package:projeto_um/widget/widget_nao_validados/painel_botoes.dart';
 import 'package:projeto_um/widget/widget_aceitos/PainelBotoesAceitos.dart';
 
 class OrcamentosListaAceitos extends StatefulWidget {
@@ -40,12 +35,12 @@ class _OrcamentosListaAceitosState extends State<OrcamentosListaAceitos> {
       builder: (context, AsyncSnapshot<List<Orcamentos>> lista) {
         if (!lista.hasData) return const CircularProgressIndicator();
         if (lista.data == null) return const Text('Não há orçamentos!!!');
-        List<Orcamentos> orcamentosAceitos = lista.data!;
+        List<Orcamentos> orcamentos = lista.data!;
         return ListView.builder(
-          itemCount: orcamentosAceitos.length,
+          itemCount: orcamentos.length,
           itemBuilder: (context, indice) {
-            var orcamentos = orcamentosAceitos[indice];
-            return criarItemLista(context, orcamentos);
+            var orcamentosAceitos = orcamentos[indice];
+            return criarItemLista(context, orcamentosAceitos);
           },
         );
       },
@@ -56,7 +51,7 @@ class _OrcamentosListaAceitosState extends State<OrcamentosListaAceitos> {
 
   Widget criarItemLista(BuildContext context, Orcamentos orcamentos) {
     return ItemLista(
-        orcamentosAceitos: orcamentos,
+        orcamentos: orcamentos,
 
         detalhes: () {
           Navigator.pushNamed(context, Rotas.orcamentosDetalhes,
@@ -70,13 +65,12 @@ class _OrcamentosListaAceitosState extends State<OrcamentosListaAceitos> {
 }
 
 class ItemLista extends StatelessWidget {
-  final Orcamentos orcamentosAceitos;
+  final Orcamentos orcamentos;
   final VoidCallback detalhes;
   final VoidCallback concluirAceitos;
 
   const ItemLista(
-      {required this.orcamentosAceitos,
-
+      {required this.orcamentos,
       required this.detalhes,
       required this.concluirAceitos,
       Key? key})
@@ -85,9 +79,9 @@ class ItemLista extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: FotoContato(orcamentos: orcamentosAceitos),
-      title: Text(orcamentosAceitos.nome),
-      subtitle: Text(orcamentosAceitos.telefone),
+      leading: FotoContato(orcamentos: orcamentos),
+      title: Text(orcamentos.nome),
+      subtitle: Text(orcamentos.telefone),
       trailing: PainelBotoesAceitos(concluirAceitos: concluirAceitos),
       onTap: detalhes,
     );

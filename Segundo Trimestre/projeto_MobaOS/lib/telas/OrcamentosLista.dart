@@ -3,7 +3,6 @@ import 'package:projeto_um/database/sqlite/dao/orcamentos_dao_sqlite.dart';
 import 'package:projeto_um/dto/Orcamentos.dart';
 import 'package:projeto_um/interface/orcamentos_interface_dao.dart';
 import 'package:projeto_um/rotas.dart';
-import 'package:projeto_um/widget/BarraNavegacao.dart';
 import 'package:projeto_um/widget/BotaoAdicionar.dart';
 import 'package:projeto_um/widget/widget_nao_validados/foto_contato.dart';
 import 'package:projeto_um/widget/widget_nao_validados/painel_botoes.dart';
@@ -48,7 +47,7 @@ class _OrcamentosListaState extends State<OrcamentosLista> {
     );
   }
   
-  Future<List<Orcamentos>> buscarContatos() {
+  Future<List<Orcamentos>> buscarOrcamentos() {
     setState(() {});
     return dao.consultarTodos();
   }
@@ -76,14 +75,14 @@ class _OrcamentosListaState extends State<OrcamentosLista> {
         orcamentos: orcamentos,
         aceitar: () {
           dao.aceitar(orcamentos);
-          buscarContatos();
+          buscarOrcamentos();
         },
         detalhes: () {
           Navigator.pushNamed(context, Rotas.orcamentosDetalhes, arguments: orcamentos);
         },
         excluir: () {
           dao.excluir(orcamentos.id);
-          buscarContatos();
+          buscarOrcamentos();
         });
   }
 }

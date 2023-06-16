@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_um/telas/login.dart';
 
 class EsqueciSenha extends StatelessWidget {
   const EsqueciSenha({super.key});

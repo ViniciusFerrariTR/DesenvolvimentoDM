@@ -8,14 +8,15 @@ const criarOrcamentos = '''
     ,telefone CHAR(16) NOT NULL
     ,email VARCHAR(150) NOT NULL
     ,url_avatar VARCHAR(300) NOT NULL
-    ,statusOrcamento VARCHAR(300) NOT NULL
+    ,statusOrcamento TEXT DEFAULT 'NAO_VERIFICADO'
+    ,orcamentoConcluido TEXT DEFAULT 'EM_ANDAMENTO'
   )''';
 
 
 
 const insercoesOrcamentos = [
 '''
-INSERT INTO orcamentos (nome, servico, endereco, telefone, email, url_avatar, statusOrcamento)
+INSERT INTO orcamentos (nome, servico, endereco, telefone, email, url_avatar, statusOrcamento, orcamentoConcluido)
 VALUES (
   'Vinicius',
   'Encanamento',
@@ -23,15 +24,17 @@ VALUES (
   '(44) 9 97531577',
   'ferrari@email.com',
   'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584_960_720.png',
-  'NAO_VERIFICADO')
+  'NAO_VERIFICADO',
+  'EM_ANDAMENTO'
+  )
 '''];
 
 
 
 const insercoesOrcamentosAceitos = [
   '''
-INSERT INTO orcamentosAceitos (nome, servico, endereco, telefone, email, url_avatar, statusOrcamento)
+INSERT INTO orcamentosAceitos (nome, servico, endereco, telefone, email, url_avatar, statusOrcamento, orcamentoConcluido)
 VALUES (
-  ?,?,?,?,?,?,?)
+  ?,?,?,?,?,?,?,?)
 '''
 ];
