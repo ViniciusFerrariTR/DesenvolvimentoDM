@@ -8,12 +8,20 @@ class OrcamentosDAOSQlite implements OrcamentosInterfaceDAO {
   Future<Orcamentos> aceitar(Orcamentos orcamentos) async {
     Database db = await Conexao.criar();
     String sql;
+    /*
     if (orcamentos.id == null) {
       db.update('orcamentos',{'statusOrcamento': 'ACEITO'}, where: 'id = ?', whereArgs: [orcamentos.id],
       );
-    }
+    }*/
+
+    sql = 'UPDATE orcamentos SET statusOrcamento = \'ACEITO\' WHERE id = ?';
+    await db.rawUpdate(sql, [
+      orcamentos.id,
+    ]);
+    print('>>>>>aceitar ${orcamentos.id}');
     return orcamentos;
   }
+
 
   @override
   Future<Orcamentos> concluirAceitos(Orcamentos orcamentos) async {
@@ -52,7 +60,7 @@ class OrcamentosDAOSQlite implements OrcamentosInterfaceDAO {
   Future<List<Orcamentos>> consultarTodosAceitos() async {
     Database db = await Conexao.criar();
     List<Orcamentos> listaAceitos = (await db.query('orcamentos',
-            where: 'statusOrcamento = ?', whereArgs: ["ACEITO"]))
+            where: 'statusOrcamento = ?', whereArgs: ['ACEITO']))
         .map<Orcamentos>(converterOrcamentos)
         .toList();
 
@@ -69,11 +77,12 @@ class OrcamentosDAOSQlite implements OrcamentosInterfaceDAO {
 
   @override
   Future<Orcamentos> salvar(Orcamentos orcamentos) async {
+    print('salvar >>>> ${orcamentos}}');
     Database db = await Conexao.criar();
     String sql;
     if (orcamentos.id == null) {
       sql =
-          'INSERT INTO orcamentos (nome, servico, endereco, telefone, email, url_avatar, orcamentoConcluido, statusOrcamento) VALUES (?,?,?,?,?,?,EM_ANDAMENTO,NAO_VERIFICADO)';
+          'INSERT INTO orcamentos (nome, servico, endereco, telefone, email, url_avatar) VALUES (?,?,?,?,?,?)';
       int id = await db.rawInsert(sql, [
         orcamentos.nome,
         orcamentos.servico,
@@ -81,8 +90,6 @@ class OrcamentosDAOSQlite implements OrcamentosInterfaceDAO {
         orcamentos.telefone,
         orcamentos.email,
         orcamentos.url_avatar,
-        orcamentos.orcamentoConcluido,
-        orcamentos.statusOrcamento,
       ]);
       orcamentos = Orcamentos(
         id: id,
@@ -92,12 +99,11 @@ class OrcamentosDAOSQlite implements OrcamentosInterfaceDAO {
         telefone: orcamentos.telefone,
         email: orcamentos.email,
         url_avatar: orcamentos.url_avatar,
-        orcamentoConcluido: orcamentos.orcamentoConcluido,
-        statusOrcamento: orcamentos.statusOrcamento,
+        cidade: orcamentos.cidade
       );
     } else {
       sql =
-          'UPDATE orcamentos SET nome = ?, servico = ?, endereco = ?, telefone = ?, email = ?, url_avatar = ?, orcamentoConcluido = EM_ANDAMENTO, statusOrcamento = NAO_VERIFICADO WHERE id = ?';
+          'UPDATE orcamentos SET nome = ?, servico = ?, endereco = ?, telefone = ?, email = ?, url_avatar = ? WHERE id = ?';
       db.rawUpdate(sql, [
         orcamentos.nome,
         orcamentos.servico,
@@ -105,8 +111,6 @@ class OrcamentosDAOSQlite implements OrcamentosInterfaceDAO {
         orcamentos.telefone,
         orcamentos.email,
         orcamentos.url_avatar,
-        orcamentos.orcamentoConcluido,
-        orcamentos.statusOrcamento,
       ]);
     }
     return orcamentos;
@@ -121,6 +125,7 @@ class OrcamentosDAOSQlite implements OrcamentosInterfaceDAO {
         email: resultado['email'],
         url_avatar: resultado['url_avatar'],
         orcamentoConcluido: resultado['orcamentoConcluido'],
+        cidade: resultado['cidade'],
         statusOrcamento: resultado['statusOrcamento']);
   }
 }

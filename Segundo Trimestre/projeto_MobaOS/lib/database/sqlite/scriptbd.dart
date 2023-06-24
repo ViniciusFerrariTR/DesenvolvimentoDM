@@ -1,5 +1,5 @@
 
-const criarOrcamentos = '''
+const criarOrcamento = ['''
   CREATE TABLE orcamentos(
     id INTEGER NOT NULL PRIMARY KEY
     ,nome VARCHAR(200) NOT NULL
@@ -8,9 +8,25 @@ const criarOrcamentos = '''
     ,telefone CHAR(16) NOT NULL
     ,email VARCHAR(150) NOT NULL
     ,url_avatar VARCHAR(300) NOT NULL
-    ,statusOrcamento TEXT DEFAULT 'NAO_VERIFICADO'
+    ,statusOrcamento VARCHAR(150) DEFAULT 'NAO_VERIFICADO'
     ,orcamentoConcluido TEXT DEFAULT 'EM_ANDAMENTO'
-  )''';
+  )''',
+'''
+ CREATE TABLE estado(
+    id INTEGER NOT NULL PRIMARY KEY
+    ,nome VARCHAR(200) NOT NULL
+    ,sigla CHAR(2) NOT NULL
+  )
+''',
+  '''
+ CREATE TABLE cidade(
+    id INTEGER NOT NULL PRIMARY KEY
+    ,nome VARCHAR(200) NOT NULL
+    ,estado_id INTEGER NOT NULL
+    ,FOREIGN KEY (estado_id) REFERENCES estado (id) 
+  )
+''',
+];
 
 
 
@@ -27,14 +43,28 @@ VALUES (
   'NAO_VERIFICADO',
   'EM_ANDAMENTO'
   )
-'''];
-
-
-
-const insercoesOrcamentosAceitos = [
-  '''
-INSERT INTO orcamentosAceitos (nome, servico, endereco, telefone, email, url_avatar, statusOrcamento, orcamentoConcluido)
-VALUES (
-  ?,?,?,?,?,?,?,?)
+''',
 '''
+INSERT INTO estado (nome, sigla)
+VALUES ('PARANÁ','PR')
+''',
+  '''
+INSERT INTO estado (nome, sigla)
+VALUES ('SÃO PAULO','SP')
+''',
+  '''
+INSERT INTO cidade (nome, estado_id)
+VALUES ('PARANAVAÍ',1)
+''',
+  '''
+INSERT INTO cidade (nome, estado_id)
+VALUES ('MARINGÁ',1)
+''',
+  '''
+INSERT INTO cidade (nome, estado_id)
+VALUES ('BAURU',2)
+''',
+
 ];
+
+

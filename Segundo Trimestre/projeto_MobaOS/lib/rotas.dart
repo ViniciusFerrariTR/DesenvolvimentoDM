@@ -1,3 +1,4 @@
+
 class Rotas {
   static const login = "login";
   static const loginPrimario = "loginPrimario";
@@ -10,7 +11,10 @@ class Rotas {
   static const orcamentosDetalhes = "orcamentosDetalhes";
   static const orcamentosLista = "orcamentosLista";
   static const orcamentosListaAceitos = "orcamentosListaAceitos";
-static const orcamentosDetalhesAceitos = "orcamentosDetalhesAceitos";
-static const orcamentosListaRecusados = "orcamentosListaRecusados"; 
-
+  static const orcamentosDetalhesAceitos = "orcamentosDetalhesAceitos";
+  static const orcamentosListaRecusados = "orcamentosListaRecusados";
+  static const cidadeForm = "cidadeForm";
+  static const cidadeLista = "cidadeLista";
+  static const estadoForm = "estadoForm";
+  static const estadoLista = "estadoLista";
 }

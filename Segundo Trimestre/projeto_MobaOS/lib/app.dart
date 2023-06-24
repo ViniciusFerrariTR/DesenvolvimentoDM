@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_um/telas/CidadeForm.dart';
+import 'package:projeto_um/telas/CidadeLista.dart';
 import 'package:projeto_um/telas/EsqueciSenha.dart';
+import 'package:projeto_um/telas/EstadoForm.dart';
+import 'package:projeto_um/telas/EstadoLista.dart';
 import 'package:projeto_um/telas/Login.dart';
 import 'package:projeto_um/telas/LoginPrimario.dart';
 import 'package:projeto_um/telas/OrcamentosDetalhesAceitos.dart';
@@ -38,6 +42,10 @@ class App extends StatelessWidget{
         Rotas.orcamentosLista:(context) => OrcamentosLista(),
         Rotas.orcamentosListaAceitos: (context) => OrcamentosListaAceitos(),
         Rotas.orcamentosDetalhesAceitos: (context) => OrcamentosDetalhesAceitos(),
+        Rotas.cidadeForm: (context) => CidadeForm(),
+        Rotas.cidadeLista: (context) => CidadeLista(),
+        Rotas.estadoForm: (context) => EstadoForm(),
+        Rotas.estadoLista: (context) => EstadoLista(),
       },
     );
   }

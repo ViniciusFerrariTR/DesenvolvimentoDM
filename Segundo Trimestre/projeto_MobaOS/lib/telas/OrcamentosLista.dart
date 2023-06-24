@@ -23,7 +23,7 @@ class _OrcamentosListaState extends State<OrcamentosLista> {
       appBar: AppBar(title: const Text('Orcamentos')),
       body: criarLista(context),
       floatingActionButton: BotaoAdicionar(
-        acao: () => Navigator.pushNamed(context, Rotas.orcamentosForm),
+        acao: () => Navigator.pushNamed(context, Rotas.orcamentosForm).then((value) => setState((){})),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -104,8 +104,8 @@ class ItemLista extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: FotoContato(orcamentos: orcamentos),
-      title: Text(orcamentos.nome),
+      leading: FotoOrcamentos(orcamentos: orcamentos),
+      title: Text('${orcamentos.nome} | ${orcamentos.statusOrcamento} |'),
       subtitle: Text(orcamentos.telefone),
       trailing: PainelBotoes(aceitar: aceitar, excluir: excluir),
       onTap: detalhes,

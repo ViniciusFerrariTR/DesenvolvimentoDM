@@ -45,8 +45,8 @@ class Login extends StatelessWidget {
               SizedBox(height: 50),
               Padding(
                 padding: const EdgeInsets.all(20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Wrap(
+
                   children: [
                     ElevatedButton(
                       child: Text("Criar conta"),
@@ -65,6 +65,18 @@ class Login extends StatelessWidget {
                       child: Text("Esqueci minha senha"),
                       onPressed: () {
                         Navigator.pushNamed(context, "esqueciSenha");
+                      },
+                    ),
+                    ElevatedButton(
+                      child: Text("Cadastro Cidade"),
+                      onPressed: () {
+                        Navigator.pushNamed(context, "cidadeForm");
+                      },
+                    ),
+                    ElevatedButton(
+                      child: Text("Cadastro Estado"),
+                      onPressed: () {
+                        Navigator.pushNamed(context, "estadoForm");
                       },
                     ),
                   ],

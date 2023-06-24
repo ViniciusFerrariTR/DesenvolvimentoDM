@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_um/database/sqlite/dao/orcamentos_dao_sqlite.dart';
 import 'package:projeto_um/dto/Orcamentos.dart';
 import 'package:projeto_um/widget/Botao.dart';
+import 'package:projeto_um/widget/widget_nao_validados/CampoCidade.dart';
 import 'package:projeto_um/widget/widget_nao_validados/CampoEmail.dart';
 import 'package:projeto_um/widget/widget_nao_validados/CampoEndereco.dart';
 import 'package:projeto_um/widget/widget_nao_validados/CampoServico.dart';
@@ -19,12 +20,17 @@ class OrcamentosForm extends StatefulWidget {
 
 class _OrcamentosFormState extends State<OrcamentosForm> {
   final formKey = GlobalKey<FormState>();
-
   dynamic id;
+  final campoNome = CampoNome(controle: TextEditingController());
+  final campoServico = CampoServico(controle: TextEditingController());
+  final campoEndereco = CampoEndereco(controle: TextEditingController());
+  final campoCidade = CampoOpcoesCidade();
+  final campoTelefone = CampoTelefone(controle: TextEditingController());
+  final campoEmail = CampoEmail(controle: TextEditingController());
+  final campoURL = CampoURL(controle: TextEditingController());
 
   @override
   Widget build(BuildContext context) {
-    receberContatoParaAlteracao(context);
     return Scaffold(
         appBar: AppBar(title: const Text('Orçamentos')),
         body: 
@@ -38,6 +44,7 @@ class _OrcamentosFormState extends State<OrcamentosForm> {
                 campoNome,
                 campoServico,
                 campoEndereco,
+                campoCidade,
                 campoTelefone,
                 campoEmail,
                 campoURL,
@@ -50,22 +57,8 @@ class _OrcamentosFormState extends State<OrcamentosForm> {
       );
   }
 
-  final campoNome = CampoNome(controle: TextEditingController());
-  final campoServico = CampoServico(controle: TextEditingController());
-  final campoEndereco = CampoEndereco(controle: TextEditingController());
-  final campoTelefone = CampoTelefone(controle: TextEditingController());
-  final campoEmail = CampoEmail(controle: TextEditingController());
-  final campoURL = CampoURL(controle: TextEditingController());
 
-  receberContatoParaAlteracao(BuildContext context) {
-    var parametro = ModalRoute.of(context);
-    if (parametro != null && parametro.settings.arguments != null) {
-      Orcamentos orcamentos = parametro.settings.arguments as Orcamentos;
-      id = orcamentos.id;
-      preencherCampos(orcamentos);
-    }
-  }
-
+ 
   Widget criarBotao(BuildContext context) {
     return Botao(
       context: context,
@@ -74,7 +67,7 @@ class _OrcamentosFormState extends State<OrcamentosForm> {
         if (formState != null && formState.validate()) {
           var orcamentos = preencherDTO();
           OrcamentosInterfaceDAO dao = OrcamentosDAOSQlite();
-          dao.aceitar(orcamentos);
+          dao.salvar(orcamentos);
           Navigator.pop(context);
         }
       },
@@ -87,6 +80,7 @@ class _OrcamentosFormState extends State<OrcamentosForm> {
         nome: campoNome.controle.text,
         servico: campoServico.controle.text,
         endereco: campoEndereco.controle.text,
+        cidade: campoCidade.opcaoSelecionado?.nome,
         telefone: campoTelefone.controle.text,
         email: campoEmail.controle.text,
         url_avatar: campoURL.controle.text);
@@ -98,5 +92,6 @@ class _OrcamentosFormState extends State<OrcamentosForm> {
     campoEndereco.controle.text = orcamentos.endereco;
     campoTelefone.controle.text = orcamentos.telefone;
     campoEmail.controle.text = orcamentos.email;
+    campoURL.controle.text = orcamentos.url_avatar;
   }
 }

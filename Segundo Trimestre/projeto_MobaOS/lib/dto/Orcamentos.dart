@@ -3,6 +3,7 @@ class Orcamentos {
   final String nome;
   final String servico;
   final String endereco;
+  String? cidade;
   final String telefone;
   final String email;
   final String url_avatar;
@@ -14,6 +15,7 @@ class Orcamentos {
       required this.nome,
       required this.servico,
       required this.endereco,
+      required this.cidade,
       required this.telefone,
       required this.email,
       required this.url_avatar,
@@ -28,6 +30,7 @@ class Orcamentos {
       $nome 
       $servico
       $endereco
+      $cidade
       $telefone
       $email
       $url_avatar

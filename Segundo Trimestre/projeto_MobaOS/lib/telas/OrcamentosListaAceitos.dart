@@ -79,7 +79,7 @@ class ItemLista extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: FotoContato(orcamentos: orcamentos),
+      leading: FotoOrcamentos(orcamentos: orcamentos),
       title: Text(orcamentos.nome),
       subtitle: Text(orcamentos.telefone),
       trailing: PainelBotoesAceitos(concluirAceitos: concluirAceitos),

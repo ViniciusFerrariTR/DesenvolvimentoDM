@@ -23,6 +23,7 @@ class CampoEndereco extends StatelessWidget {
     );
   }
 
+
   String? ehVazio(String? valorDigitado) {
     if (valorDigitado == null || valorDigitado.isEmpty)
       return 'O campo é obrigatório';

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-class PainelBotoes extends StatelessWidget {
-  final VoidCallback aceitar;
+class PainelBotoesEstado extends StatelessWidget {
+  final VoidCallback alterar;
   final VoidCallback excluir;
-  const PainelBotoes({required this.aceitar, required this.excluir, Key? key,})
+  const PainelBotoesEstado(
+      {required this.alterar, required this.excluir, Key? key})
       : super(key: key);
 
   @override
@@ -18,10 +19,10 @@ class PainelBotoes extends StatelessWidget {
             color: Colors.red,
           ),
           IconButton(
-            onPressed: aceitar,
-            icon: const Icon(Icons.check),
-            color: Colors.green,
-          ),
+            onPressed: alterar,
+            icon: const Icon(Icons.edit),
+            color: Colors.orange,
+          )
         ],
       ),
     );
