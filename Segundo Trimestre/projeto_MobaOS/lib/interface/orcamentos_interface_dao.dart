@@ -7,7 +7,6 @@ abstract class OrcamentosInterfaceDAO {
   Future<Orcamentos> concluirAceitos(Orcamentos orcamentos);
   Future<Orcamentos> consultar(int id);
   Future<List<Orcamentos>> consultarTodos();
-  Future<List<Orcamentos>> consultarTodosAceitos();
   Future<Orcamentos> salvar(Orcamentos orcamentos);
 
 }

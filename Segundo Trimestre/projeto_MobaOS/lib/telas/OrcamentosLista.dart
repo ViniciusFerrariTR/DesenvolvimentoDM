@@ -47,7 +47,7 @@ class _OrcamentosListaState extends State<OrcamentosLista> {
     );
   }
   
-  Future<List<Orcamentos>> buscarOrcamentos() {
+  Future<List<Orcamentos>>  buscarOrcamentos() {
     setState(() {});
     return dao.consultarTodos();
   }
@@ -81,6 +81,7 @@ class _OrcamentosListaState extends State<OrcamentosLista> {
           Navigator.pushNamed(context, Rotas.orcamentosDetalhes, arguments: orcamentos);
         },
         excluir: () {
+          print(orcamentos.id);
           dao.excluir(orcamentos.id);
           buscarOrcamentos();
         });
@@ -105,7 +106,14 @@ class ItemLista extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: FotoOrcamentos(orcamentos: orcamentos),
-      title: Text('${orcamentos.nome} | ${orcamentos.statusOrcamento} |'),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('${orcamentos.nome}'),
+          Text('|${orcamentos.servico}|',style: TextStyle(fontSize: 14),),
+          
+        ],
+      ),
       subtitle: Text(orcamentos.telefone),
       trailing: PainelBotoes(aceitar: aceitar, excluir: excluir),
       onTap: detalhes,

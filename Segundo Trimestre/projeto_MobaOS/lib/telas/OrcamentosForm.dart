@@ -80,7 +80,7 @@ class _OrcamentosFormState extends State<OrcamentosForm> {
         nome: campoNome.controle.text,
         servico: campoServico.controle.text,
         endereco: campoEndereco.controle.text,
-        cidade: campoCidade.opcaoSelecionado?.nome,
+        cidade: campoCidade.opcaoSelecionado!,
         telefone: campoTelefone.controle.text,
         email: campoEmail.controle.text,
         url_avatar: campoURL.controle.text);

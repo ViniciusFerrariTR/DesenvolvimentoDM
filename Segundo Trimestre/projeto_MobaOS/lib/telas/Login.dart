@@ -70,7 +70,7 @@ class Login extends StatelessWidget {
                     ElevatedButton(
                       child: Text("Cadastro Cidade"),
                       onPressed: () {
-                        Navigator.pushNamed(context, "cidadeForm");
+                        Navigator.pushNamed(context, "cidadeLista");
                       },
                     ),
                     ElevatedButton(

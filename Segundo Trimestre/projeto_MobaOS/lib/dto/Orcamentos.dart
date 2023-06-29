@@ -1,9 +1,11 @@
+import 'package:projeto_um/dto/Cidade.dart';
+
 class Orcamentos {
   final dynamic id;
   final String nome;
   final String servico;
   final String endereco;
-  String? cidade;
+  final Cidade cidade;
   final String telefone;
   final String email;
   final String url_avatar;

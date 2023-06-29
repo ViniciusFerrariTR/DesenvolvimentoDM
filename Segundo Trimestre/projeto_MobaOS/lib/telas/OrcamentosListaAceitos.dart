@@ -24,14 +24,11 @@ class _OrcamentosListaAceitosState extends State<OrcamentosListaAceitos> {
        
   );}
 
-  Future<List<Orcamentos>> buscarTodosAceitos() {
-    setState(() {});
-    return dao.consultarTodosAceitos();
-  }
+
 
   Widget criarLista(BuildContext context) {
     return FutureBuilder(
-      future: dao.consultarTodosAceitos(),
+      future: dao.consultarTodos(),
       builder: (context, AsyncSnapshot<List<Orcamentos>> lista) {
         if (!lista.hasData) return const CircularProgressIndicator();
         if (lista.data == null) return const Text('Não há orçamentos!!!');
@@ -59,7 +56,7 @@ class _OrcamentosListaAceitosState extends State<OrcamentosListaAceitos> {
         },
         concluirAceitos: () {
           dao.concluirAceitos(orcamentos.id);
-          buscarTodosAceitos();
+          
         });
   }
 }

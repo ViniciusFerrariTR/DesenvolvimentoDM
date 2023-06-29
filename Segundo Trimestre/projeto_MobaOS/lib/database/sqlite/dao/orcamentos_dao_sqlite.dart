@@ -1,4 +1,6 @@
 import 'package:projeto_um/database/sqlite/conexao.dart';
+import 'package:projeto_um/database/sqlite/dao/cidade_dao_sqlite.dart';
+import 'package:projeto_um/dto/Cidade.dart';
 import 'package:projeto_um/dto/Orcamentos.dart';
 import 'package:projeto_um/interface/orcamentos_interface_dao.dart';
 import 'package:sqflite/sqlite_api.dart';
@@ -49,23 +51,16 @@ class OrcamentosDAOSQlite implements OrcamentosInterfaceDAO {
 
   @override
   Future<List<Orcamentos>> consultarTodos() async {
-    Database db = await Conexao.criar();
-    List<Orcamentos> lista = (await db.query('orcamentos'))
-        .map<Orcamentos>(converterOrcamentos)
-        .toList();
+    Database db = await Conexao.criar();  
+    List<Map<dynamic,dynamic>> resultadoBD = await db.query('orcamentos');
+    List<Orcamentos> lista = [];
+    for(var registro in resultadoBD){
+      var contato = await converterOrcamentos(registro);
+      lista.add(contato);
+    }
     return lista;
   }
 
-  @override
-  Future<List<Orcamentos>> consultarTodosAceitos() async {
-    Database db = await Conexao.criar();
-    List<Orcamentos> listaAceitos = (await db.query('orcamentos',
-            where: 'statusOrcamento = ?', whereArgs: ['ACEITO']))
-        .map<Orcamentos>(converterOrcamentos)
-        .toList();
-
-    return listaAceitos;
-  }
 
   @override
   Future<bool> excluir(dynamic id) async {
@@ -75,57 +70,63 @@ class OrcamentosDAOSQlite implements OrcamentosInterfaceDAO {
     return linhasAfetas > 0;
   }
 
-  @override
-  Future<Orcamentos> salvar(Orcamentos orcamentos) async {
-    print('salvar >>>> ${orcamentos}}');
-    Database db = await Conexao.criar();
-    String sql;
-    if (orcamentos.id == null) {
-      sql =
-          'INSERT INTO orcamentos (nome, servico, endereco, telefone, email, url_avatar) VALUES (?,?,?,?,?,?)';
-      int id = await db.rawInsert(sql, [
-        orcamentos.nome,
-        orcamentos.servico,
-        orcamentos.endereco,
-        orcamentos.telefone,
-        orcamentos.email,
-        orcamentos.url_avatar,
-      ]);
-      orcamentos = Orcamentos(
-        id: id,
-        nome: orcamentos.nome,
-        servico: orcamentos.servico,
-        endereco: orcamentos.endereco,
-        telefone: orcamentos.telefone,
-        email: orcamentos.email,
-        url_avatar: orcamentos.url_avatar,
-        cidade: orcamentos.cidade
-      );
-    } else {
-      sql =
-          'UPDATE orcamentos SET nome = ?, servico = ?, endereco = ?, telefone = ?, email = ?, url_avatar = ? WHERE id = ?';
-      db.rawUpdate(sql, [
-        orcamentos.nome,
-        orcamentos.servico,
-        orcamentos.endereco,
-        orcamentos.telefone,
-        orcamentos.email,
-        orcamentos.url_avatar,
-      ]);
-    }
-    return orcamentos;
+@override
+Future<Orcamentos> salvar(Orcamentos orcamentos) async {
+  Database db = await Conexao.criar();
+  String sql;
+  if (orcamentos.id == null) {
+    sql =
+        'INSERT INTO orcamentos (nome, servico, endereco, cidade_id, telefone, email, url_avatar) VALUES (?,?,?,?,?,?,?)';
+    int id = await db.rawInsert(sql, [
+      orcamentos.nome,
+      orcamentos.servico,
+      orcamentos.endereco,
+      orcamentos.cidade.id,
+      orcamentos.telefone,
+      orcamentos.email,
+      orcamentos.url_avatar,
+    ]);
+    orcamentos = Orcamentos(
+      id: id,
+      nome: orcamentos.nome,
+      servico: orcamentos.servico,
+      endereco: orcamentos.endereco,
+      cidade: orcamentos.cidade,
+      telefone: orcamentos.telefone,
+      email: orcamentos.email,
+      url_avatar: orcamentos.url_avatar,
+    );
+  } else {
+    sql =
+        'UPDATE orcamentos SET nome = ?, servico = ?, endereco = ?, cidade_id = ?, telefone = ?, email = ?, url_avatar = ? WHERE id = ?';
+    await db.rawUpdate(sql, [
+      orcamentos.nome,
+      orcamentos.servico,
+      orcamentos.endereco,
+      orcamentos.cidade.id,
+      orcamentos.telefone,
+      orcamentos.email,
+      orcamentos.url_avatar,
+      orcamentos.id,
+    ]);
   }
+  return orcamentos;
+}
 
-  Orcamentos converterOrcamentos(Map<dynamic, dynamic> resultado) {
-    return Orcamentos(
-        nome: resultado['nome'],
-        servico: resultado['servico'],
-        endereco: resultado['endereco'],
-        telefone: resultado['telefone'],
-        email: resultado['email'],
-        url_avatar: resultado['url_avatar'],
-        orcamentoConcluido: resultado['orcamentoConcluido'],
-        cidade: resultado['cidade'],
-        statusOrcamento: resultado['statusOrcamento']);
-  }
+
+
+Future<Orcamentos> converterOrcamentos(Map<dynamic, dynamic> resultado) async {
+  Cidade cidade = await CidadeDAOSQLite().consultar(resultado['cidade_id']);
+  return Orcamentos(
+    nome: resultado['nome'],
+    servico: resultado['servico'],
+    endereco: resultado['endereco'],
+    cidade: cidade,
+    telefone: resultado['telefone'],
+    email: resultado['email'],
+    url_avatar: resultado['url_avatar'],
+    orcamentoConcluido: resultado['orcamentoConcluido'],
+    statusOrcamento: resultado['statusOrcamento'],
+  );
+}
 }

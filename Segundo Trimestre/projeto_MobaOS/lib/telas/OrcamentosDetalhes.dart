@@ -21,7 +21,7 @@ class _OrcamentosDetalhesState extends State<OrcamentosDetalhes> {
       body: ListView(
         padding: const EdgeInsets.all(60),
         children: [
-          FotoOrcamentos(orcamentos: orcamentos, raio: 300),
+          FotoOrcamentos(orcamentos: orcamentos, raio: 600),
           nome(orcamentos),
           telefone(orcamentos),
           email(orcamentos),
@@ -58,10 +58,12 @@ class _OrcamentosDetalhesState extends State<OrcamentosDetalhes> {
     );
   }
   Widget endereco(Orcamentos orcamentos) {
+    final cidade = orcamentos.cidade.nome;
+    final estado = orcamentos.cidade.estado.sigla;
     return Card(
       child: ListTile(
         title: const Text('Endereço'),
-        subtitle: Text("${orcamentos.endereco}, ${orcamentos.cidade}"),
+        subtitle: Text("${orcamentos.endereco}, ${cidade} ($estado)"),
       ),
     );
   }

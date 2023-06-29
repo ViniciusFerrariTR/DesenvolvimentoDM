@@ -14,9 +14,15 @@ class FotoOrcamentos extends StatelessWidget {
   Widget build(BuildContext context) {
     String url = orcamentos.url_avatar;
     return (Uri.tryParse(url)!.isAbsolute)
-        ? CircleAvatar(backgroundImage: NetworkImage(url))
+        ? CircleAvatar(
+            backgroundImage: NetworkImage(url),
+            radius:
+                35, 
+          )
         : const CircleAvatar(
             child: Icon(Icons.person),
+            radius:
+                35,
           );
   }
 }
