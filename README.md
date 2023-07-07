@@ -21,8 +21,8 @@
 * 📆 Aula 4 - 25/05 [Implementação da classe de conexão e Implementação do DAO SQLite](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/desenvolvimentoAulas/aula_2505)
 * 📆 Aula 5 - 01/06 [Desenvolvimento do projeto pessoal em sala de aula](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projeto_MobaOS)
 * 📆 Aula 6 - 15/06 [CRUD com Associação ](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projeto_MobaOS)
-* 📆 Aula 7 - ?
-* 📆 Aula 8 - ?
+* 📆 Aula 7 - 22/06 [Desenvolvimento do projeto pessoal em sala de aula](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projeto_MobaOS)
+* 📆 Aula 8 - 06/07 [Desenvolvimento do projeto pessoal em sala de aula](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projeto_MobaOS)
 * 📆 Aula 9 - ?
 * 📆 Aula 10 - ?
 * 📆 Aula 11 - ?
