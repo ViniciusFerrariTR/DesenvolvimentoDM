@@ -1,46 +1,86 @@
 import 'package:flutter/material.dart';
-// ignore_for_file: prefer_const_constructors
 
-class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+import '../widget/widget_nao_validados/validacao_login.dart';
+
+class Login extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  Future<void> _login() async {
+    final dbHelper = DatabaseHelper();
+    final users = await dbHelper.getUsers();
+
+    final username = _usernameController.text;
+    final password = _passwordController.text;
+
+    bool isValidUser = false;
+
+    for (final user in users) {
+      if (user['username'] == username && user['password'] == password) {
+        isValidUser = true;
+        break;
+      }
+    }
+
+    if (isValidUser) {
+      return;
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Erro de autenticação'),
+            content: Text('Usuário ou senha inválidos.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Login")),
+      appBar: AppBar(title: Text('Login')),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(
+        padding: EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,      
-            children: [           
-              Text(
-                'MOBA O.S',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 255, 8, 0),
-                  fontSize: 55,
-                  fontWeight: FontWeight.bold,
-                ),
+            children: [
+              TextFormField(
+                controller: _usernameController,
+                decoration: InputDecoration(labelText: 'Usuário'),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Por favor, insira o usuário';
+                  }
+                  return null;
+                },
               ),
-              Container(
-                width: 300,
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: "Usuário",
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              SizedBox(height: 30),
-              Container(
-                width: 300,
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: "Senha",
-                    border: OutlineInputBorder(),
-                  ),
-                ),
+              TextFormField(
+                controller: _passwordController,
+                decoration: InputDecoration(labelText: 'Senha'),
+                obscureText: true,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Por favor, insira a senha';
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 50),
               Padding(
@@ -57,8 +97,8 @@ class Login extends StatelessWidget {
                     ElevatedButton(
                       child: Text("Entrar"),
                       onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, "orcamentosLista", (route) => false);
+                        Navigator.pushNamed(
+                            context, "orcamentosLista");
                       },
                     ),
                     ElevatedButton(
