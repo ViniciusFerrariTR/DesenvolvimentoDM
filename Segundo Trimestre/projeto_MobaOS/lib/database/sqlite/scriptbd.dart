@@ -1,5 +1,15 @@
 const criarOrcamento = [
   '''
+  CREATE TABLE usuario(
+    id INTEGER NOT NULL PRIMARY KEY
+    ,usuario VARCHAR(200) NOT NULL
+    ,endereco VARCHAR(200) NOT NULL
+    ,telefone CHAR(16) NOT NULL
+    ,email VARCHAR(150) NOT NULL
+    ,senha VARCAHR(200) NOT NULL
+  )
+  ''',
+  '''
  CREATE TABLE estado(
     id INTEGER NOT NULL PRIMARY KEY
     ,nome VARCHAR(200) NOT NULL
@@ -31,6 +41,10 @@ const criarOrcamento = [
 ];
 
 const insercoesOrcamentos = [
+  '''
+  INSERT INTO usuario (usuario, endereco, telefone, email, senha)
+  VALUES ('admin', 'Rua Guerino Rossini', '(44) 9 97531577', 'email@example.com','admin')
+''',
   '''
 INSERT INTO estado (nome, sigla)
 VALUES ('PARANÁ','PR')

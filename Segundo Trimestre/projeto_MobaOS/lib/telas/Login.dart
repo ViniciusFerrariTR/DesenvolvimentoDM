@@ -1,92 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_um/database/sqlite/conexao.dart';
+import 'package:projeto_um/widget/widget_nao_validados/validacao_login.dart';
+import 'package:sqflite/sqflite.dart';
 
-import '../widget/widget_nao_validados/validacao_login.dart';
+import '../dto/Usuario.dart';
 
 class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginState createState() => _LoginState();
 }
 
-class _LoginPageState extends State<Login> {
+class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  Future<void> _login() async {
-    final dbHelper = DatabaseHelper();
-    final users = await dbHelper.getUsers();
-
-    final username = _usernameController.text;
-    final password = _passwordController.text;
-
-    bool isValidUser = false;
-
-    for (final user in users) {
-      if (user['username'] == username && user['password'] == password) {
-        isValidUser = true;
-        break;
-      }
-    }
-
-    if (isValidUser) {
-      return;
-    } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Erro de autenticação'),
-            content: Text('Usuário ou senha inválidos.'),
-            actions: <Widget>[
-              TextButton(
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
+  final _usuarioController = TextEditingController();
+  final _senhaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
+      appBar: AppBar(title: const Text("Login")),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                controller: _usernameController,
-                decoration: InputDecoration(labelText: 'Usuário'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, insira o usuário';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _passwordController,
-                decoration: InputDecoration(labelText: 'Senha'),
-                obscureText: true,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, insira a senha';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 50),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Wrap(
-
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 300,
+                  child: TextFormField(
+                    controller: _usuarioController,
+                    decoration: InputDecoration(
+                      labelText: "Usuario",
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, digite o Usuario';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                SizedBox(height: 30),
+                Container(
+                  width: 300,
+                  child: TextFormField(
+                    controller: _senhaController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: "Senha",
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, digite a senha';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                SizedBox(height: 50),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ElevatedButton(
                       child: Text("Criar conta"),
@@ -94,35 +73,53 @@ class _LoginPageState extends State<Login> {
                         Navigator.pushNamed(context, "cadastro");
                       },
                     ),
-                    ElevatedButton(
-                      child: Text("Entrar"),
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, "orcamentosLista");
-                      },
-                    ),
-                    ElevatedButton(
-                      child: Text("Esqueci minha senha"),
-                      onPressed: () {
-                        Navigator.pushNamed(context, "esqueciSenha");
-                      },
-                    ),
-                    ElevatedButton(
-                      child: Text("Cadastro Cidade"),
-                      onPressed: () {
-                        Navigator.pushNamed(context, "cidadeLista");
-                      },
-                    ),
-                    ElevatedButton(
-                      child: Text("Cadastro Estado"),
-                      onPressed: () {
-                        Navigator.pushNamed(context, "estadoForm");
-                      },
-                    ),
+
+                      ElevatedButton(
+                        child: Text("Entrar"),
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            String usuarioDigitado = _usuarioController.text;
+                            String senhaDigitada = _senhaController.text;
+
+                            Database db = await Conexao.criar();
+                            List<Map<String, dynamic>> maps = await db.query(
+                              'usuario',
+                              where: 'usuario = ?',
+                              whereArgs: [usuarioDigitado],
+                            );
+
+                            if (maps.isNotEmpty) {
+                              // Se o usuário existir, valide a senha
+                              Usuario usuarioEncontrado =
+                                  Usuario.fromMap(maps.first);
+                              if (usuarioEncontrado.senha == senhaDigitada) {
+                                // Login válido, navegue para a página inicial
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, "orcamentosLista", (route) => false);
+                              } else {
+                                // Senha incorreta, exiba uma mensagem de erro
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Senha incorreta.'),
+                                  ),
+                                );
+                              }
+                            } else {
+                              // Usuário não encontrado, exiba uma mensagem de erro
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Usuário não encontrado.'),
+                                ),
+                              );
+                            }
+                          }
+                        },
+                      ),
+                  
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

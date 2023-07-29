@@ -32,7 +32,7 @@ class App extends StatelessWidget{
       routes: {
         Rotas.login: (context) => Login(),
         Rotas.loginPrimario: (context) => LoginPrimario(),
-        Rotas.cadastro: (context) => Cadastro(),
+        Rotas.cadastro: (context) => UsuarioForm(),
         Rotas.apresentacaoUm: (context) => TelaApresentacaoUm(),
         Rotas.apresentacaoDois: (context) => TelaApresentacaoDois(),
         Rotas.apresentacaoTres: (context) => TelaApresentacaoTres(),
