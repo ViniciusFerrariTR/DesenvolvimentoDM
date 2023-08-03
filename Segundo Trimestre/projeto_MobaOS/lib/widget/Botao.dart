@@ -11,7 +11,7 @@ class Botao extends StatelessWidget {
     return ElevatedButton(
       onPressed: salvar,
       style: ElevatedButton.styleFrom(
-        primary: Color.fromARGB(255, 255, 0, 0),
+        primary: Color.fromARGB(255, 224, 26, 26),
         onPrimary: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -21,7 +21,7 @@ class Botao extends StatelessWidget {
           horizontal: 24,
         ),
       ),
-      child: const Text('Salvar Orçamento'),
+      child: const Text('Salvar'),
     );
   }
 }

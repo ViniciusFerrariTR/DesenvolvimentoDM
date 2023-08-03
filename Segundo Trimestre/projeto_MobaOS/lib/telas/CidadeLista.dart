@@ -5,7 +5,6 @@ import '../interface/cidade_interface_dao.dart';
 import '../rotas.dart';
 import '../widget/BarraNavegacao.dart';
 import '../widget/BotaoAdicionar.dart';
-import '../widget/widget_nao_validados/painel_botoes.dart';
 import '../widget/widget_nao_validados/painel_botoes_cidade.dart';
 
 class CidadeLista extends StatefulWidget {

@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
 
 class EsqueciSenha extends StatelessWidget {
-  const EsqueciSenha({super.key});
+  const EsqueciSenha({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(0, 238, 255, 1),
+        backgroundColor: Colors.red,
         title: const Text('Esqueci minha senha',
             style: TextStyle(fontWeight: FontWeight.bold)),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Text(
+                "MOBA O.S",
+                style: TextStyle(
+                  fontSize: 60,
+                  fontFamily: 'NomeDaFonte',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                ),
+              ),
+              SizedBox(height: 50),
               Container(
                 width: 300,
-                child: TextField(
+                child: TextFormField(
                   obscureText: false,
                   decoration: InputDecoration(
                     labelText: "Email",
@@ -25,19 +37,33 @@ class EsqueciSenha extends StatelessWidget {
                   ),
                 ),
               ),
-          
-              const SizedBox(height: 16),
-              ElevatedButton(
-                  child: const Text("Enviar"),
+              SizedBox(height: 30),
+              SizedBox(
+                width: 300,
+                height: 40,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    backgroundColor: Colors.red,
+                  ),
+                  child: Text(
+                    "Enviar",
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Código enviado com sucesso!")));
-          
-                  }),
+                      content: Text("Código enviado com sucesso!"),
+                    ));
+                  },
+                ),
+              ),
             ],
           ),
-        ));
-
+        ),
+      ),
+    );
   }
 }
-

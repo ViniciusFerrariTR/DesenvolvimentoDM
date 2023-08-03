@@ -9,19 +9,23 @@ class OrcamentosDAOSQlite implements OrcamentosInterfaceDAO {
   @override
   Future<Orcamentos> aceitar(Orcamentos orcamentos) async {
     Database db = await Conexao.criar();
-    String sql;
-    /*
-    if (orcamentos.id == null) {
-      db.update('orcamentos',{'statusOrcamento': 'ACEITO'}, where: 'id = ?', whereArgs: [orcamentos.id],
-      );
-    }*/
+    String sql = 'UPDATE orcamentos SET statusOrcamento = ? WHERE id = ?';
+    await db.rawUpdate(sql, ['ACEITO', orcamentos.id]);
+    
+    Orcamentos orcamentosAtualizado = Orcamentos(
+      id: orcamentos.id,
+      nome:orcamentos.nome,
+      servico: orcamentos.servico,
+      endereco: orcamentos.endereco,
+      cidade: orcamentos.cidade,
+      telefone: orcamentos.telefone,
+      email: orcamentos.email,
+      url_avatar: orcamentos.url_avatar,
+      statusOrcamento: 'ACEITO',
 
-    sql = 'UPDATE orcamentos SET statusOrcamento = \'ACEITO\' WHERE id = ?';
-    await db.rawUpdate(sql, [
-      orcamentos.id,
-    ]);
-    print('>>>>>aceitar ${orcamentos.id}');
-    return orcamentos;
+    );
+
+    return orcamentosAtualizado;
   }
 
 
@@ -39,28 +43,30 @@ class OrcamentosDAOSQlite implements OrcamentosInterfaceDAO {
   }
 
   @override
-  Future<Orcamentos> consultar(int id) async {
+  Future<List<Orcamentos>> consultar() async {
     Database db = await Conexao.criar();
-    List<Map> maps = await db.query('orcamentos',
-        where: 'statusOrcamento = ?',
-        whereArgs: ['NAO_VERIFICADO']);
-    if (maps.isEmpty) throw Exception("Não possui orcamentos em verificação");
-    Map<dynamic, dynamic> resultado = maps.first;
-    return converterOrcamentos(resultado);
-  }
-
-  @override
-  Future<List<Orcamentos>> consultarTodos() async {
-    Database db = await Conexao.criar();  
-    List<Map<dynamic,dynamic>> resultadoBD = await db.query('orcamentos');
+    List<Map<dynamic, dynamic>> resultadoBD = await db.query('orcamentos',
+        where: 'statusOrcamento = ?', whereArgs: ['ACEITO']);
     List<Orcamentos> lista = [];
-    for(var registro in resultadoBD){
-      var contato = await converterOrcamentos(registro);
-      lista.add(contato);
+    for (var registro in resultadoBD) {
+      var orcamentos = await converterOrcamentos(registro);
+      lista.add(orcamentos);
     }
     return lista;
   }
 
+  @override
+  Future<List<Orcamentos>> consultarTodos() async {
+    Database db = await Conexao.criar();
+    List<Map<dynamic, dynamic>> resultadoBD = await db.query('orcamentos',
+        where: 'statusOrcamento = ?', whereArgs: ['NAO_VERIFICADO']);
+    List<Orcamentos> lista = [];
+    for (var registro in resultadoBD) {
+      var orcamentos = await converterOrcamentos(registro);
+      lista.add(orcamentos);
+    }
+    return lista;
+  }
 
   @override
   Future<bool> excluir(dynamic id) async {
@@ -118,6 +124,7 @@ Future<Orcamentos> salvar(Orcamentos orcamentos) async {
 Future<Orcamentos> converterOrcamentos(Map<dynamic, dynamic> resultado) async {
   Cidade cidade = await CidadeDAOSQLite().consultar(resultado['cidade_id']);
   return Orcamentos(
+    id: resultado['id'],
     nome: resultado['nome'],
     servico: resultado['servico'],
     endereco: resultado['endereco'],
@@ -129,4 +136,5 @@ Future<Orcamentos> converterOrcamentos(Map<dynamic, dynamic> resultado) async {
     statusOrcamento: resultado['statusOrcamento'],
   );
 }
+
 }

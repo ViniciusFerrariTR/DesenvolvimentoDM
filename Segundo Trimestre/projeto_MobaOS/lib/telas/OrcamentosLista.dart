@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:projeto_um/database/sqlite/dao/orcamentos_dao_sqlite.dart';
 import 'package:projeto_um/dto/Orcamentos.dart';
@@ -16,11 +18,38 @@ class OrcamentosLista extends StatefulWidget {
 
 class _OrcamentosListaState extends State<OrcamentosLista> {
   OrcamentosInterfaceDAO dao = OrcamentosDAOSQlite();
+  
+
 
    @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Orcamentos')),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            
+            
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text("Perfil"),
+              onTap: () {
+                Navigator.pushNamed(context, "meuPerfil");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text("Sair"),
+              onTap: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, "login", (route) => false);
+              },
+            ),
+          ],
+        ),
+      ),
       body: criarLista(context),
       floatingActionButton: BotaoAdicionar(
         acao: () => Navigator.pushNamed(context, Rotas.orcamentosForm).then((value) => setState((){})),
@@ -73,17 +102,20 @@ class _OrcamentosListaState extends State<OrcamentosLista> {
   Widget criarItemLista(BuildContext context, Orcamentos orcamentos) {
     return ItemLista(
         orcamentos: orcamentos,
-        aceitar: () {
-          dao.aceitar(orcamentos);
+        aceitar: () async {
+          print('Status antes de aceitar: ${orcamentos.statusOrcamento}');
+          await dao.aceitar(orcamentos);
+          print('Status após aceitar: ${orcamentos.statusOrcamento}');
           buscarOrcamentos();
         },
         detalhes: () {
           Navigator.pushNamed(context, Rotas.orcamentosDetalhes, arguments: orcamentos);
         },
         excluir: () {
-          print(orcamentos.id);
-          dao.excluir(orcamentos.id);
-          buscarOrcamentos();
+          setState(() {
+            dao.excluir(orcamentos.id);
+            buscarOrcamentos();
+          });
         });
   }
 }

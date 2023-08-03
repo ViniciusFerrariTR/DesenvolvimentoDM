@@ -1,17 +1,11 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:projeto_um/widget/widget_aceitos/CampoEmail.dart';
 import 'package:projeto_um/widget/widget_nao_validados/CampoEndereco.dart';
 import 'package:projeto_um/widget/widget_nao_validados/CampoSenha.dart';
 import 'package:projeto_um/widget/widget_nao_validados/CampoTelefone.dart';
-
 import '../database/sqlite/dao/Usuario_dao_sqlite.dart';
 import '../dto/Usuario.dart';
-import '../interface/Usuario_interface_dao.dart';
-import '../widget/Botao.dart';
 import '../widget/widget_nao_validados/CampoNome.dart';
-import '../widget/widget_nao_validados/campo_opcoes_estado.dart';
 
 class UsuarioForm extends StatefulWidget {
   const UsuarioForm({Key? key}) : super(key: key);
@@ -28,37 +22,60 @@ class _UsuarioFormState extends State<UsuarioForm> {
   final campoTelefone = CampoTelefone(controle: TextEditingController());
   final campoEmail = CampoEmail(controle: TextEditingController());
   final campoSenha = CampoSenha(controle: TextEditingController());
+
   @override
   Widget build(BuildContext context) {
     receberDadosParaAlteracao(context);
     return Scaffold(
-        appBar: AppBar(title: const Text('Cadastro')),
-        body: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                campoNome,
-                campoEndereco,
-                campoTelefone,
-                campoEmail,
-                campoSenha,
-                criarBotao(context),
-              ],
-            )));
-  }
-
-  Widget criarBotao(BuildContext context) {
-    return Botao(
-      context: context,
-      salvar: () {
-        var formState = formKey.currentState;
-        if (formState != null && formState.validate()) {
-          var usuario = preencherDTO();
-          UsuarioDAOSQLite dao = UsuarioDAOSQLite();
-          dao.salvar(usuario);
-          Navigator.pop(context);
-        }
-      },
+      appBar: AppBar(title: const Text('Cadastro')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(height: 20),
+              campoNome,
+              SizedBox(height: 20),
+              campoEndereco,
+              SizedBox(height: 20),
+              campoTelefone,
+              SizedBox(height: 20),
+              campoEmail,
+              SizedBox(height: 20),
+              campoSenha,
+              SizedBox(height: 30),
+              Center(
+                child: SizedBox(
+                  width: 300,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      var formState = formKey.currentState;
+                      if (formState != null && formState.validate()) {
+                        var usuario = preencherDTO();
+                        UsuarioDAOSQLite dao = UsuarioDAOSQLite();
+                        dao.salvar(usuario);
+                        Navigator.pop(context);
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                    ),
+                    child: Text(
+                      "Cadastrar-se",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -73,12 +90,13 @@ class _UsuarioFormState extends State<UsuarioForm> {
 
   Usuario preencherDTO() {
     return Usuario(
-        id: id,
-        usuario: campoNome.controle.text,
-        endereco: campoEndereco.controle.text,
-        telefone: campoTelefone.controle.text,
-        email: campoEmail.controle.text,
-        senha: campoSenha.controle.text);
+      id: id,
+      usuario: campoNome.controle.text,
+      endereco: campoEndereco.controle.text,
+      telefone: campoTelefone.controle.text,
+      email: campoEmail.controle.text,
+      senha: campoSenha.controle.text,
+    );
   }
 
   void preencherCampos(Usuario usuario) {
@@ -87,6 +105,5 @@ class _UsuarioFormState extends State<UsuarioForm> {
     campoTelefone.controle.text = usuario.telefone;
     campoEmail.controle.text = usuario.email;
     campoSenha.controle.text = usuario.senha;
-    
   }
 }
