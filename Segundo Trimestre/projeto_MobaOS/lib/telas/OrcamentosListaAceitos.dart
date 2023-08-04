@@ -4,7 +4,8 @@ import 'package:projeto_um/dto/Orcamentos.dart';
 import 'package:projeto_um/interface/orcamentos_interface_dao.dart';
 import 'package:projeto_um/rotas.dart';
 import 'package:projeto_um/widget/widget_nao_validados/foto_contato.dart';
-import 'package:projeto_um/widget/widget_aceitos/PainelBotoesAceitos.dart';
+
+import '../widget/widget_nao_validados/botao_concluirAceito.dart';
 
 class OrcamentosListaAceitos extends StatefulWidget {
   const OrcamentosListaAceitos({Key? key}) : super(key: key);
@@ -25,7 +26,6 @@ class _OrcamentosListaAceitosState extends State<OrcamentosListaAceitos> {
   );}
 
 
-
   Widget criarLista(BuildContext context) {
     return FutureBuilder(
       future: dao.consultar(),
@@ -43,7 +43,10 @@ class _OrcamentosListaAceitosState extends State<OrcamentosListaAceitos> {
       },
     );
   }
-
+  Future<List<Orcamentos>> buscarOrcamentos() {
+    setState(() {});
+    return dao.consultar();
+  }
   
 
   Widget criarItemLista(BuildContext context, Orcamentos orcamentos) {
@@ -54,10 +57,11 @@ class _OrcamentosListaAceitosState extends State<OrcamentosListaAceitos> {
           Navigator.pushNamed(context, Rotas.orcamentosDetalhes,
               arguments: orcamentos);
         },
-        concluirAceitos: () {
-          dao.excluir(orcamentos.id);
-          setState(() {});
-          dao.consultar();
+        excluir: () {
+          setState(() {
+            dao.excluir(orcamentos.id);
+            buscarOrcamentos();
+          });
         });
   }
 }
@@ -65,12 +69,12 @@ class _OrcamentosListaAceitosState extends State<OrcamentosListaAceitos> {
 class ItemLista extends StatelessWidget {
   final Orcamentos orcamentos;
   final VoidCallback detalhes;
-  final VoidCallback concluirAceitos;
+  final VoidCallback excluir;
 
   const ItemLista(
       {required this.orcamentos,
       required this.detalhes,
-      required this.concluirAceitos,
+      required this.excluir,
       Key? key})
       : super(key: key);
 
@@ -80,7 +84,7 @@ class ItemLista extends StatelessWidget {
       leading: FotoOrcamentos(orcamentos: orcamentos),
       title: Text(orcamentos.nome),
       subtitle: Text(orcamentos.telefone),
-      trailing: PainelBotoesAceitos(concluirAceitos: concluirAceitos),
+      trailing: BotaoExcluirAceito(excluir: excluir),
       onTap: detalhes,
     );
   }

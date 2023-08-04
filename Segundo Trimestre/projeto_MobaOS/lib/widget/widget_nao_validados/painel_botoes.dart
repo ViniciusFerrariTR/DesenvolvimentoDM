@@ -6,6 +6,8 @@ class PainelBotoes extends StatelessWidget {
   const PainelBotoes({required this.aceitar, required this.excluir, Key? key,})
       : super(key: key);
 
+  
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -22,6 +24,7 @@ class PainelBotoes extends StatelessWidget {
             icon: const Icon(Icons.check),
             color: Colors.green,
           ),
+          
         ],
       ),
     );

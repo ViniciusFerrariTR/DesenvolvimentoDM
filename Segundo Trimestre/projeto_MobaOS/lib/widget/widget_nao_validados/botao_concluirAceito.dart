@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class PainelBotoesAceitos extends StatelessWidget {
-  final VoidCallback concluirAceitos;
-  const PainelBotoesAceitos({required this.concluirAceitos, Key? key})
+class BotaoExcluirAceito extends StatelessWidget {
+  final VoidCallback excluir;
+  const BotaoExcluirAceito({required this.excluir, Key? key})
       : super(key: key);
 
   @override
@@ -12,11 +12,10 @@ class PainelBotoesAceitos extends StatelessWidget {
       child: Row(
         children: [
           IconButton(
-            onPressed: concluirAceitos,
+            onPressed: excluir,
             icon: const Icon(Icons.delete),
             color: Colors.red,
           ),
-        
         ],
       ),
     );

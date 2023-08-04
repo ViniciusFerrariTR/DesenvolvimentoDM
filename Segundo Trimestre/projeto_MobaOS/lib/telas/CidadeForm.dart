@@ -5,8 +5,7 @@ import '../dto/Cidade.dart';
 import '../interface/cidade_interface_dao.dart';
 import '../widget/Botao.dart';
 import '../widget/widget_nao_validados/CampoNome.dart';
-import '../widget/widget_nao_validados/campo_opcoes_estado.dart';
-
+import '../widget/widget_nao_validados/campoEstado.dart';
 
 class CidadeForm extends StatefulWidget {
   const CidadeForm({Key? key}) : super(key: key);

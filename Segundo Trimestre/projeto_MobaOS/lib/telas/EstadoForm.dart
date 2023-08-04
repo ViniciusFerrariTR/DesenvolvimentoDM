@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../database/sqlite/dao/estado_dao_sqlite.dart';
 import '../dto/Estado.dart';
-import '../interface/estado_interface_dao.dart';
-import '../widget/Botao.dart';
 import '../widget/widget_nao_validados/CampoNome.dart';
 
 class EstadoForm extends StatefulWidget {
@@ -18,35 +15,51 @@ class _EstadoFormState extends State<EstadoForm> {
   dynamic id;
   final campoNome = CampoNome(controle: TextEditingController());
   final campoSigla = CampoNome(controle: TextEditingController());
+  late List<Estado> estados;
+
+  @override
+  void initState() {
+    super.initState();
+    carregarEstados();
+  }
+
+  void carregarEstados() async {
+    var listaEstados = await EstadoDAOSQLite().consultarTodos();
+    setState(() {
+      estados = listaEstados;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     receberEstadoParaAlteracao(context);
     return Scaffold(
-        appBar: AppBar(title: const Text('Cadastro')),
-        body: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                campoNome,
-                campoSigla,
-                criarBotao(context),
-              ],
-            )));
+      appBar: AppBar(title: const Text('Cadastro')),
+      body: Form(
+        key: formKey,
+        child: Column(
+          children: [
+            campoNome,
+            campoSigla,
+            criarBotao(context),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget criarBotao(BuildContext context) {
-    return Botao(
-      context: context,
-      salvar: () {
+    return ElevatedButton(
+      onPressed: () async {
         var formState = formKey.currentState;
         if (formState != null && formState.validate()) {
           var estado = preencherDTO();
-          EstadoInterfaceDAO dao = EstadoDAOSQLite();
-          dao.salvar(estado);
+          await salvarEstado(estado);
+          carregarEstados();
           Navigator.pop(context);
         }
       },
+      child: const Text('Salvar'),
     );
   }
 
@@ -70,5 +83,10 @@ class _EstadoFormState extends State<EstadoForm> {
   void preencherCampos(Estado estado) {
     campoNome.controle.text = estado.nome;
     campoSigla.controle.text = estado.sigla;
+  }
+
+  Future<void> salvarEstado(Estado estado) async {
+    EstadoDAOSQLite dao = EstadoDAOSQLite();
+    await dao.salvar(estado);
   }
 }

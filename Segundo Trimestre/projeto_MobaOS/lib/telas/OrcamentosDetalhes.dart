@@ -16,7 +16,7 @@ class _OrcamentosDetalhesState extends State<OrcamentosDetalhes> {
 
   @override
   Widget build(BuildContext context) {
-    Orcamentos orcamentos = receberorcamentos(context);
+    Orcamentos orcamentos = receberOrcamentos(context);
     return Scaffold(
       body: ListView(
         padding: const EdgeInsets.all(60),
@@ -33,7 +33,7 @@ class _OrcamentosDetalhesState extends State<OrcamentosDetalhes> {
     );
   }
 
-  Orcamentos receberorcamentos(BuildContext context) {
+  Orcamentos receberOrcamentos(BuildContext context) {
     var parametro = ModalRoute.of(context);
     if (parametro != null) {
       Orcamentos orcamentos = parametro.settings.arguments as Orcamentos;

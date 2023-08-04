@@ -32,33 +32,64 @@ class _OrcamentosFormState extends State<OrcamentosForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Orçamentos')),
-        body: 
-        Padding(
+      appBar: AppBar(title: const Text('Orçamentos')),
+      body: SingleChildScrollView(
+        child: Padding(
           padding: const EdgeInsets.all(30.0),
           child: Form(
             key: formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(height: 20),
                 campoNome,
+                SizedBox(height: 20),
                 campoServico,
+                SizedBox(height: 20),
                 campoEndereco,
+                SizedBox(height: 20),
                 campoCidade,
+                SizedBox(height: 20),
                 campoTelefone,
+                SizedBox(height: 20),
                 campoEmail,
+                SizedBox(height: 20),
                 campoURL,
-                SizedBox(height:  20,),
-                criarBotao(context),
+                SizedBox(height: 20),
+                Center(
+                  child: SizedBox(
+                    width: 300,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        var formState = formKey.currentState;
+                        if (formState != null && formState.validate()) {
+                          var orcamentos = preencherDTO();
+                          OrcamentosDAOSQlite dao = OrcamentosDAOSQlite();
+                          dao.salvar(orcamentos);
+                          Navigator.pop(context);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                      ),
+                      child: Text(
+                        "Salvar Orçamento",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ),
+                ),
               ],
-            )
-         ),
-    ),
-      );
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
-
- 
   Widget criarBotao(BuildContext context) {
     return Botao(
       context: context,
@@ -76,14 +107,15 @@ class _OrcamentosFormState extends State<OrcamentosForm> {
 
   Orcamentos preencherDTO() {
     return Orcamentos(
-        id: id,
-        nome: campoNome.controle.text,
-        servico: campoServico.controle.text,
-        endereco: campoEndereco.controle.text,
-        cidade: campoCidade.opcaoSelecionado!,
-        telefone: campoTelefone.controle.text,
-        email: campoEmail.controle.text,
-        url_avatar: campoURL.controle.text);
+      id: id,
+      nome: campoNome.controle.text,
+      servico: campoServico.controle.text,
+      endereco: campoEndereco.controle.text,
+      cidade: campoCidade.opcaoSelecionado!,
+      telefone: campoTelefone.controle.text,
+      email: campoEmail.controle.text,
+      url_avatar: campoURL.controle.text,
+    );
   }
 
   void preencherCampos(Orcamentos orcamentos) {

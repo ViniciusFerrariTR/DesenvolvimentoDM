@@ -103,9 +103,7 @@ class _OrcamentosListaState extends State<OrcamentosLista> {
     return ItemLista(
         orcamentos: orcamentos,
         aceitar: () async {
-          print('Status antes de aceitar: ${orcamentos.statusOrcamento}');
           await dao.aceitar(orcamentos);
-          print('Status após aceitar: ${orcamentos.statusOrcamento}');
           buscarOrcamentos();
         },
         detalhes: () {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_um/widget/widget_aceitos/CampoEmail.dart';
+import 'package:projeto_um/widget/widget_nao_validados/CampoEmail.dart';
 import 'package:projeto_um/widget/widget_nao_validados/CampoEndereco.dart';
 import 'package:projeto_um/widget/widget_nao_validados/CampoSenha.dart';
 import 'package:projeto_um/widget/widget_nao_validados/CampoTelefone.dart';

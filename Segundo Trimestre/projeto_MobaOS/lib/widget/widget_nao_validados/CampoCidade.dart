@@ -29,24 +29,44 @@ class _CampoOpcoesCidadeState extends State<CampoOpcoesCidade> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: dadosBD,
-        builder: (BuildContext context, AsyncSnapshot<List<Cidade>> resultado) {
-          if (!resultado.hasData) return const CircularProgressIndicator();
-          if (resultado.data == null)
-            return const Text('Faça o cadastro de cidade primeiro.');
-          List<Cidade> cidades = resultado.data!;
-          List<DropdownMenuItem<Cidade>> itensCidade = cidades
-              .map((cidade) =>
-                  DropdownMenuItem(value: cidade, child: Text(cidade.nome)))
-              .toList();
-          return DropdownButtonFormField<Cidade>(
-              hint: const Text('cidade onde mora'),
-              isExpanded: true,
-              items: itensCidade,
-              value: widget.opcaoSelecionado,
-              onChanged: (cidadeEscolhida) {
-                if (cidadeEscolhida != null) associarCidade(cidadeEscolhida);
-              });
-        });
+      future: dadosBD,
+      builder: (BuildContext context, AsyncSnapshot<List<Cidade>> resultado) {
+        if (!resultado.hasData) return const CircularProgressIndicator();
+        if (resultado.data == null)
+          return const Text('Faça o cadastro de cidade primeiro.');
+        List<Cidade> cidades = resultado.data!;
+        List<DropdownMenuItem<Cidade>> itensCidade = cidades
+            .map((cidade) =>
+                DropdownMenuItem(value: cidade, child: Text(cidade.nome)))
+            .toList();
+
+        return DropdownButtonFormField<Cidade>(
+          hint: const Text('Cidade onde mora'),
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          ),
+          isExpanded: true,
+          items: [
+            ...itensCidade,
+            DropdownMenuItem(
+              value: null,
+              child: ListTile(
+                leading: const Icon(Icons.add),
+                title: const Text('Adicionar cidade'),
+                onTap: () {
+                  Navigator.pushNamed(context, 'cidadeForm');
+                },
+              ),
+            ),
+          ],
+          value: widget.opcaoSelecionado,
+          onChanged: (cidadeEscolhida) {
+            if (cidadeEscolhida != null) associarCidade(cidadeEscolhida);
+          },
+        );
+      },
+    );
   }
 }
