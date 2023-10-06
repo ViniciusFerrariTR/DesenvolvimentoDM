@@ -23,11 +23,10 @@
 * 📆 Aula 6 - 15/06 [CRUD com Associação ](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projeto_MobaOS)
 * 📆 Aula 7 - 22/06 [Desenvolvimento do projeto pessoal em sala de aula](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projeto_MobaOS)
 * 📆 Aula 8 - 06/07 [Desenvolvimento do projeto pessoal em sala de aula](https://github.com/ViniciusFerrariTR/DesenvolvimentoDM/tree/main/Segundo%20Trimestre/projeto_MobaOS)
-* 📆 Aula 9 - ?
-* 📆 Aula 10 - ?
-* 📆 Aula 11 - ?
-* 📆 Aula 12 - ?
-* 📆 Aula 13 - ?
+
+### 3º Trimestre
+
+* 📆 Aulas - 15/09 até ... [Projetos desenvolvidos em REACT de acordo com as arquiteturas ]()
 
 ## Sábados Letivos
 * 📆 25/02  (Feito)
