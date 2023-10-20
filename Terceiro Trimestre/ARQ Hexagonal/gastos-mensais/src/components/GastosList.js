@@ -1,16 +1,17 @@
 import React from 'react';
 
-function GastosList({ gastos }) {
+function GastosList({ gastos, totalGastos }) {
     return (
         <div>
-            <h2>Lista de Despesas</h2>
+            <h2>Lista de Gastos</h2>
             <ul>
                 {gastos.map((gasto, index) => (
                     <li key={index}>
-                        {gasto.description} - R$ {gasto.amount} - {gasto.date}
+                        {gasto.descricao}: R$ {gasto.valor}
                     </li>
                 ))}
             </ul>
+            <p>Total de Gastos: R$ {totalGastos}</p>
         </div>
     );
 }

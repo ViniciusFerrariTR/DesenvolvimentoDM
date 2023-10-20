@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-function GastosForm({ onAddExpense }) {
+function GastosForm({ onAddGasto }) {
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
 
-    const handleAddExpense = () => {
-        onAddExpense({
+    const handleAddGasto = () => {
+        onAddGasto({
             description,
             amount: parseFloat(amount),
             date,
@@ -36,7 +36,7 @@ function GastosForm({ onAddExpense }) {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
             />
-            <button onClick={handleAddExpense}>Adicionar</button>
+            <button onClick={handleAddGasto}>Adicionar</button>
         </div>
     );
 }

@@ -4,16 +4,16 @@ import GastosForm from './GastosForm';
 import GastosList from './GastosList';
 
 function App() {
-  const [expenses, setExpenses] = useState([]);
+  const [gastos, setGastos] = useState([]);
 
-  const addExpense = (expense) => {
-    setExpenses([...expenses, expense]);
+  const addGasto = (gasto) => {
+    setGastos([...gastos, gasto]);
   };
 
   return (
     <div className="App">
-      <GastosForm onAddExpense={addExpense} />
-      <GastosList expenses={expenses} />
+      <GastosForm onAddGasto={addGasto} />
+      <GastosList gastos={gastos} />
     </div>
   );
 }
