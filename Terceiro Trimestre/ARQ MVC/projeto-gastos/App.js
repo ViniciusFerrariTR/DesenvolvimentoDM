@@ -1,19 +1,28 @@
-// App.js
-import React, { useState } from 'react';
-import GastosLista from './components/GastosLista';
-import GastosForm from './components/GastosForm';
+// src/App.js
+import React, { useState, useEffect } from 'react';
+import GastoModel from './model/GastoModel';
+import GastoList from './components/GastoList';
+import GastoController from './controllers/GastoController';
 
 const App = () => {
-  const [gastos, setGastos] = useState([]);
+  const [expenses, setExpenses] = useState([]);
+  const expenseController = new ExpenseController();
 
-  const addGastos = gasto => {
-    setGastos([...gastos, { ...gasto, id: Date.now() }]);
+  useEffect(() => {
+    expenseController.register((updatedExpenses) => {
+      setExpenses(updatedExpenses);
+    });
+  }, []);
+
+  const handleAddExpense = (description, amount) => {
+    expenseController.addExpense(description, amount);
   };
 
   return (
     <div>
-      <ExpenseList gastos={gastos} />
-      <ExpenseForm addGastos={addGastos} />
+      <h1>Controle de Gastos</h1>
+      <ExpenseList expenses={expenses} />
+      <button onClick={() => handleAddExpense('Comida', 20)}>Adicionar Gasto</button>
     </div>
   );
 };

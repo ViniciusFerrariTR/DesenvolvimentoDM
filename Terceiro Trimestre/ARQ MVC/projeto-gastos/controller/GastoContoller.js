@@ -1,19 +1,22 @@
-// controllers/GastoController.js
-import GastoModel from '../model/GastoModel'; // Substitua pelo nome do modelo real que você tenha
-
 class GastoController {
-  model = new GastoModel(); // Substitua pelo nome do modelo real que você tenha
-
-  async addGasto(description, amount) {
-    try {
-      await this.model.addGasto(description, amount);
-    } catch (error) {
-      throw error;
-    }
+  constructor() {
+    this.expenses = [];
+    this.callbacks = [];
   }
 
-  getGastos() {
-    return this.model.getGastos();
+  addExpense(description, amount) {
+    const id = this.expenses.length + 1;
+    const newExpense = { id, description, amount };
+    this.expenses.push(newExpense);
+    this.notify();
+  }
+
+  register(callback) {
+    this.callbacks.push(callback);
+  }
+
+  notify() {
+    this.callbacks.forEach((callback) => callback(this.expenses));
   }
 }
 
